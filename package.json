@@ -1,0 +1,12 @@
+{
+  "name": "trip-app",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Shared trip planner for Seoul, Osaka & Tokyo, Oct 2026",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^2.8.2"
+  }
+}

@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1B2138">
+<meta name="description" content="A shared itinerary for Seoul, Osaka &amp; Tokyo, October 2026.">
+<title>Seoul → Japan · Oct 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%AE%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#1B2138;
+    --ink-soft:#565A72;
+    --ink-faint:#8C90A3;
+    --paper:#EFE7D8;
+    --paper-rgb:239,231,216;
+    --card:#FBF8F1;
+    --card-rgb:251,248,241;
+    --line:#DCD2BC;
+    --amber:#C6842C;
+    --amber-soft:#F1DFB9;
+    --amber-ink:#8A5C1D;
+    --red:#B23A2E;
+    --red-soft:#F0D6CE;
+    --red-ink:#7E271D;
+    --green:#4B6B4C;
+    --green-soft:#DAE4D3;
+    --green-ink:#324832;
+    --plum:#6B4A6E;
+    --plum-soft:#E3D8E4;
+    --plum-ink:#4C3450;
+    --teal:#2E6B6B;
+    --teal-soft:#D3E4E1;
+    --teal-ink:#1D4444;
+    --grey:#7A7C86;
+    --grey-soft:#E7E4DD;
+    --radius-sm:10px;
+    --radius:16px;
+    --radius-lg:26px;
+    --shadow-sm:0 1px 2px rgba(27,33,56,0.06), 0 1px 1px rgba(27,33,56,0.04);
+    --shadow-md:0 8px 24px -8px rgba(27,33,56,0.18), 0 2px 8px -2px rgba(27,33,56,0.08);
+    --shadow-lg:0 24px 60px -20px rgba(27,33,56,0.35);
+    --ease:cubic-bezier(.22,1,.36,1);
+    --ease-spring:cubic-bezier(.34,1.56,.64,1);
+    --nav-w:280px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{-webkit-text-size-adjust:100%;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    background-image:
+      radial-gradient(1200px 600px at 100% -10%, rgba(198,132,44,0.08), transparent 60%),
+      radial-gradient(900px 500px at -10% 20%, rgba(107,74,110,0.07), transparent 55%);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    min-height:100vh;
+    min-height:100dvh;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--amber-soft);color:var(--amber-ink);}
+  a{color:inherit;}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important;}
+  }
+
+  /* ---------- App shell ---------- */
+  .app{
+    display:flex;
+    min-height:100dvh;
+  }
+
+  /* Desktop rail nav */
+  .rail{
+    display:none;
+  }
+
+  .wrap{
+    max-width:640px;
+    margin:0 auto;
+    width:100%;
+    padding-bottom:96px;
+    position:relative;
+  }
+
+  /* ---------- Hero ---------- */
+  header.hero{
+    position:relative;
+    color:var(--paper);
+    padding:0;
+    border-radius:0 0 28px 28px;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  header.hero .hero-bg{
+    position:absolute;inset:0;
+    background-size:cover;
+    background-position:center 42%;
+    transform:scale(1.06);
+    filter:saturate(1.05);
+    transition:background-image .5s var(--ease);
+  }
+  header.hero .hero-scrim{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(15,17,30,0.15) 0%, rgba(15,17,30,0.55) 62%, rgba(15,17,30,0.88) 100%);
+  }
+  header.hero .hero-inner{
+    position:relative;
+    padding:22px 20px 24px;
+    padding-top:max(22px, env(safe-area-inset-top));
+  }
+  header.hero .eyebrow{
+    display:flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:rgba(239,231,216,0.75);
+    margin:0 0 10px;
+  }
+  header.hero .eyebrow .dot{width:5px;height:5px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 3px rgba(198,132,44,0.25);}
+  header.hero .route{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(24px, 6.5vw, 34px);
+    line-height:1.16;
+    letter-spacing:0.1px;
+    margin:0 0 6px;
+    max-width:22ch;
+  }
+  header.hero .route .arrow{color:var(--amber);padding:0 3px;font-weight:400;}
+  header.hero .dates{
+    font-size:14.5px;
+    color:rgba(239,231,216,0.82);
+    margin:0 0 18px;
+    display:flex;align-items:center;gap:8px;
+  }
+  header.hero .countdown{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(10px) saturate(1.4);
+    -webkit-backdrop-filter:blur(10px) saturate(1.4);
+    border:1px solid rgba(255,255,255,0.22);
+    padding:9px 16px 9px 9px;
+    border-radius:999px;
+    box-shadow:var(--shadow-sm);
+  }
+  header.hero .countdown .cd-badge{
+    width:34px;height:34px;border-radius:50%;
+    background:var(--amber);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:700;font-size:14px;
+    color:#2b1d08;
+    flex:0 0 auto;
+  }
+  header.hero .countdown b{
+    font-family:'Fraunces',serif;
+    font-size:16px;
+    color:var(--paper);
+    font-weight:600;
+  }
+  header.hero .countdown span{font-size:12.5px;color:rgba(239,231,216,0.78);}
+
+  /* Leg strip inside hero */
+  .leg-strip{
+    display:flex;
+    gap:6px;
+    margin-top:16px;
+  }
+  .leg-strip .leg{
+    flex:1;
+    height:4px;
+    border-radius:99px;
+    background:rgba(255,255,255,0.22);
+    position:relative;
+    overflow:hidden;
+  }
+  .leg-strip .leg.done{background:var(--amber);}
+  .leg-strip .leg.active::after{
+    content:'';position:absolute;inset:0;background:var(--amber);
+    animation:pulse-leg 1.8s var(--ease) infinite;
+  }
+  @keyframes pulse-leg{0%,100%{opacity:1;}50%{opacity:.45;}}
+
+  /* ---------- Chips / filter nav ---------- */
+  .chips{
+    display:flex;
+    gap:8px;
+    padding:18px 16px 6px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    position:sticky;
+    top:0;
+    z-index:30;
+    background:linear-gradient(180deg, var(--paper) 68%, rgba(var(--paper-rgb),0));
+    padding-bottom:14px;
+    margin-bottom:-8px;
+  }
+  .chips::-webkit-scrollbar{display:none;}
+  .chip{
+    flex:0 0 auto;
+    padding:9px 16px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:var(--card);
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--ink-soft);
+    cursor:pointer;
+    white-space:nowrap;
+    transition:transform .18s var(--ease), background .18s var(--ease), color .18s var(--ease), border-color .18s var(--ease), box-shadow .18s var(--ease);
+  }
+  .chip:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm);}
+  .chip:active{transform:translateY(0) scale(.97);}
+  .chip.active{
+    background:var(--ink);
+    border-color:var(--ink);
+    color:var(--paper);
+    box-shadow:var(--shadow-sm);
+  }
+  .chip.discover{border-style:dashed;border-color:var(--amber);color:var(--amber-ink);}
+  .chip.discover.active{background:var(--amber);border-color:var(--amber);color:var(--card);}
+
+  main{padding:6px 16px 20px;}
+
+  /* ---------- Day dividers ---------- */
+  .day-divider{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin:26px 2px 12px;
+    opacity:0;
+    animation:rise .5s var(--ease) forwards;
+  }
+  .day-divider .dow{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:17px;
+    color:var(--ink);
+  }
+  .day-divider .full{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    font-weight:500;
+  }
+  .day-divider::after{
+    content:'';
+    flex:1;
+    height:1px;
+    background:linear-gradient(90deg, var(--line), transparent);
+  }
+  .day-divider.today .dow{color:var(--red);}
+  .day-divider.today .full{color:var(--red);font-weight:600;}
+  .day-divider.today .dow::before{
+    content:'';display:inline-block;width:7px;height:7px;border-radius:50%;
+    background:var(--red);margin-right:7px;vertical-align:middle;
+    box-shadow:0 0 0 4px var(--red-soft);
+  }
+
+  /* ---------- Cards ---------- */
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:14px 15px;
+    margin-bottom:10px;
+    display:flex;
+    gap:13px;
+    align-items:flex-start;
+    cursor:pointer;
+    box-shadow:var(--shadow-sm);
+    transition:transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s var(--ease);
+    opacity:0;
+    transform:translateY(10px);
+    animation:rise .5s var(--ease) forwards;
+  }
+  .card:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-md);
+    border-color:rgba(27,33,56,0.14);
+  }
+  .card:active{transform:translateY(0) scale(.995);}
+  @keyframes rise{to{opacity:1;transform:translateY(0);}}
+
+  .card .icon{
+    width:38px;height:38px;
+    border-radius:11px;
+    display:flex;align-items:center;justify-content:center;
+    flex:0 0 38px;
+    margin-top:1px;
+    transition:transform .25s var(--ease-spring);
+  }
+  .card:hover .icon{transform:scale(1.08) rotate(-4deg);}
+  .icon svg{width:18px;height:18px;}
+  .type-flight .icon{background:var(--amber-soft);}
+  .type-flight .icon svg{stroke:var(--amber-ink);}
+  .type-stay .icon{background:var(--green-soft);}
+  .type-stay .icon svg{stroke:var(--green-ink);}
+  .type-food .icon{background:var(--red-soft);}
+  .type-food .icon svg{stroke:var(--red-ink);}
+  .type-bar .icon{background:var(--teal-soft);}
+  .type-bar .icon svg{stroke:var(--teal-ink);}
+  .type-activity .icon{background:var(--plum-soft);}
+  .type-activity .icon svg{stroke:var(--plum-ink);}
+  .type-note .icon{background:var(--grey-soft);}
+  .type-note .icon svg{stroke:#4A4B54;}
+
+  .card .body{flex:1;min-width:0;}
+  .card .top-row{
+    display:flex;justify-content:space-between;gap:8px;align-items:flex-start;
+  }
+  .card .title{
+    font-weight:600;
+    font-size:15.5px;
+    color:var(--ink);
+    line-height:1.32;
+    letter-spacing:-.1px;
+  }
+  .card .time{
+    font-variant-numeric:tabular-nums;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--ink-soft);
+    white-space:nowrap;
+    padding-top:2px;
+  }
+  .card .meta{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-top:4px;
+    line-height:1.45;
+  }
+  .card .tags{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;}
+  .tag{
+    font-size:11px;
+    font-weight:700;
+    padding:3px 9px;
+    border-radius:999px;
+    background:var(--grey-soft);
+    color:var(--ink-soft);
+    letter-spacing:.02em;
+  }
+  .tag.idea{background:var(--amber-soft);color:var(--amber-ink);}
+  .tag.booked{background:var(--green-soft);color:var(--green-ink);}
+  .tag.booked::before{content:'✓ ';}
+
+  .empty{
+    text-align:center;
+    padding:64px 24px;
+    color:var(--ink-soft);
+    opacity:0;
+    animation:rise .5s var(--ease) forwards;
+  }
+  .empty .emoji{font-size:34px;margin-bottom:10px;display:block;}
+  .empty .big{
+    font-family:'Fraunces',serif;
+    font-size:19px;
+    color:var(--ink);
+    margin-bottom:6px;
+    font-weight:600;
+  }
+  .discover-cta{
+    margin-top:26px;
+    background:linear-gradient(135deg, var(--card), var(--amber-soft) 220%);
+    border:1px dashed var(--amber);
+    border-radius:var(--radius);
+    padding:18px;
+    text-align:center;
+    font-weight:700;
+    font-size:14.5px;
+    color:var(--amber-ink);
+    cursor:pointer;
+    transition:transform .2s var(--ease), box-shadow .2s var(--ease);
+  }
+  .discover-cta:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
+
+  /* ---------- Discover ---------- */
+  .discover-hero{
+    height:132px;
+    border-radius:var(--radius);
+    overflow:hidden;
+    position:relative;
+    margin-bottom:14px;
+    background-size:cover;background-position:center;
+    box-shadow:var(--shadow-sm);
+  }
+  .discover-hero::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(15,17,30,0.05), rgba(15,17,30,0.65));
+  }
+  .discover-hero .dh-label{
+    position:absolute;left:14px;bottom:12px;color:var(--paper);
+    font-family:'Fraunces',serif;font-weight:600;font-size:19px;z-index:1;
+  }
+  .subtabs{
+    display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;
+    margin:14px 0 4px;
+  }
+  .subtabs::-webkit-scrollbar{display:none;}
+  .subtab{
+    flex:0 0 auto;
+    padding:7px 14px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .18s var(--ease);
+  }
+  .subtabs.city .subtab{background:var(--card);border:1px solid var(--line);color:var(--ink-soft);}
+  .subtabs.city .subtab.active{background:var(--ink);border-color:var(--ink);color:var(--paper);}
+  .subtabs.cat .subtab{background:transparent;border:none;color:var(--ink-soft);padding:7px 4px;border-bottom:2px solid transparent;border-radius:0;margin-right:8px;}
+  .subtabs.cat .subtab.active{color:var(--ink);border-bottom-color:var(--amber);}
+  .suggest-sub{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin:12px 2px 14px;
+  }
+  .sg-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:13px 14px;
+    margin-bottom:10px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    box-shadow:var(--shadow-sm);
+    opacity:0;transform:translateY(8px);
+    animation:rise .45s var(--ease) forwards;
+    transition:transform .2s var(--ease), box-shadow .2s var(--ease);
+  }
+  .sg-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
+  .sg-card .body{flex:1;}
+  .sg-card .title{font-weight:600;font-size:14.5px;letter-spacing:-.1px;}
+  .sg-card .meta{font-size:12.5px;color:var(--ink-soft);margin-top:3px;line-height:1.45;}
+  .sg-add{
+    flex:0 0 auto;
+    width:34px;height:34px;
+    border-radius:50%;
+    border:1px solid var(--ink);
+    background:transparent;
+    color:var(--ink);
+    font-size:19px;
+    line-height:1;
+    cursor:pointer;
+    transition:all .2s var(--ease-spring);
+  }
+  .sg-add:hover{background:var(--ink);color:var(--card);transform:scale(1.08);}
+  .sg-add:active{transform:scale(.92);}
+  .sg-add.added{
+    background:var(--green);
+    border-color:var(--green);
+    color:var(--card);
+    font-size:15px;
+  }
+  .sg-add.added:hover{transform:none;background:var(--green);}
+
+  /* ---------- FAB ---------- */
+  .fab{
+    position:fixed;
+    right:22px;
+    bottom:26px;
+    width:60px;height:60px;
+    border-radius:50%;
+    background:var(--red);
+    background-image:linear-gradient(135deg, #C2483A, var(--red));
+    color:var(--card);
+    border:none;
+    font-size:29px;
+    box-shadow:0 10px 24px -6px rgba(178,58,46,0.5), 0 2px 8px rgba(178,58,46,0.3);
+    cursor:pointer;
+    z-index:40;
+    transition:transform .25s var(--ease-spring), box-shadow .25s var(--ease);
+  }
+  .fab:hover{transform:translateY(-2px) scale(1.05);box-shadow:0 14px 30px -6px rgba(178,58,46,0.55);}
+  .fab:active{transform:scale(.92);}
+
+  /* ---------- Sheet / Modal ---------- */
+  .scrim{
+    position:fixed;inset:0;
+    background:rgba(15,17,30,0.5);
+    backdrop-filter:blur(2px);
+    opacity:0;pointer-events:none;
+    transition:opacity .25s var(--ease);
+    z-index:50;
+  }
+  .scrim.open{opacity:1;pointer-events:auto;}
+  .sheet{
+    position:fixed;left:0;right:0;bottom:0;
+    background:var(--paper);
+    border-radius:22px 22px 0 0;
+    max-height:90vh;
+    overflow-y:auto;
+    transform:translateY(100%);
+    transition:transform .32s var(--ease-spring);
+    z-index:51;
+    padding:6px 20px calc(24px + env(safe-area-inset-bottom));
+    box-shadow:var(--shadow-lg);
+  }
+  .sheet.open{transform:translateY(0);}
+  .sheet-handle{
+    width:38px;height:4px;background:var(--line);
+    border-radius:99px;margin:12px auto 16px;
+  }
+  .sheet h2{
+    font-family:'Fraunces',serif;
+    font-size:20px;
+    margin:0 0 16px;
+    font-weight:600;
+  }
+  .type-select{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-bottom:18px;
+  }
+  .type-opt{
+    border:1.5px solid var(--line);
+    background:var(--card);
+    border-radius:12px;
+    padding:10px 2px;
+    text-align:center;
+    cursor:pointer;
+    transition:all .18s var(--ease);
+  }
+  .type-opt:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm);}
+  .type-opt svg{width:18px;height:18px;stroke:var(--ink-soft);transition:stroke .18s;}
+  .type-opt .lbl{display:block;font-size:10.5px;margin-top:5px;color:var(--ink-soft);font-weight:600;}
+  .type-opt.sel{border-color:var(--ink);background:var(--ink);}
+  .type-opt.sel svg{stroke:var(--paper);}
+  .type-opt.sel .lbl{color:var(--paper);}
+  label.field{display:block;margin-bottom:14px;}
+  label.field .lbl{
+    display:block;font-size:12.5px;font-weight:700;
+    color:var(--ink-soft);margin-bottom:6px;
+    letter-spacing:.01em;
+  }
+  .field input[type=text],
+  .field input[type=date],
+  .field input[type=time],
+  .field input[type=url],
+  .field textarea,
+  .field select{
+    width:100%;
+    border:1.5px solid var(--line);
+    background:var(--card);
+    border-radius:11px;
+    padding:12px 13px;
+    font-size:16px;
+    font-family:inherit;
+    color:var(--ink);
+    transition:border-color .18s var(--ease), box-shadow .18s var(--ease);
+  }
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus{
+    outline:none;
+    border-color:var(--ink);
+    box-shadow:0 0 0 3px rgba(27,33,56,0.08);
+  }
+  .field textarea{resize:vertical;min-height:60px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .status-toggle{display:flex;gap:8px;}
+  .status-toggle button{
+    flex:1;
+    padding:11px;
+    border-radius:11px;
+    border:1.5px solid var(--line);
+    background:var(--card);
+    font-weight:700;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    cursor:pointer;
+    transition:all .18s var(--ease);
+  }
+  .status-toggle button.sel-idea.on{background:var(--amber-soft);border-color:var(--amber);color:var(--amber-ink);}
+  .status-toggle button.sel-booked.on{background:var(--green-soft);border-color:var(--green);color:var(--green-ink);}
+  .sheet-actions{
+    display:flex;gap:10px;margin-top:8px;
+  }
+  .btn{
+    flex:1;
+    padding:14px;
+    border-radius:12px;
+    border:none;
+    font-weight:700;
+    font-size:15px;
+    cursor:pointer;
+    transition:transform .18s var(--ease-spring), box-shadow .18s var(--ease), opacity .18s;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn:active{transform:translateY(0) scale(.98);}
+  .btn-primary{background:var(--ink);color:var(--paper);box-shadow:var(--shadow-sm);}
+  .btn-primary:disabled{opacity:.6;transform:none;cursor:default;}
+  .btn-delete{background:transparent;color:var(--red);border:1.5px solid var(--red-soft);flex:0 0 auto;padding:14px 20px;}
+  .btn-delete:hover{background:var(--red-soft);}
+
+  .toast{
+    position:fixed;left:50%;bottom:104px;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:var(--paper);
+    padding:11px 20px;border-radius:999px;
+    font-size:13.5px;font-weight:600;
+    opacity:0;transition:all .3s var(--ease-spring);
+    z-index:60;pointer-events:none;
+    box-shadow:var(--shadow-md);
+    display:flex;align-items:center;gap:8px;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast .dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex:0 0 auto;}
+  .toast.err .dot{background:var(--red);}
+
+  /* Sync indicator */
+  .sync-pill{
+    position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;
+    z-index:45;
+    font-size:11px;font-weight:700;
+    padding:5px 10px 5px 8px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.16);
+    backdrop-filter:blur(8px);
+    color:rgba(239,231,216,0.9);
+    display:flex;align-items:center;gap:5px;
+    opacity:0;transition:opacity .3s var(--ease);
+    pointer-events:none;
+  }
+  .sync-pill.show{opacity:1;}
+  .sync-pill .sdot{width:6px;height:6px;border-radius:50%;background:var(--amber);}
+  .sync-pill.saving .sdot{animation:pulse-leg 1s ease infinite;}
+  .sync-pill.err .sdot{background:var(--red);}
+
+  /* ---------- Desktop / wide layout ---------- */
+  @media (min-width: 900px){
+    :root{ --radius-lg:32px; }
+    body{padding-left:0;}
+    .app{max-width:1240px;margin:0 auto;align-items:flex-start;}
+    .rail{
+      display:flex;
+      flex-direction:column;
+      width:var(--nav-w);
+      flex:0 0 var(--nav-w);
+      position:sticky;
+      top:0;
+      height:100dvh;
+      padding:28px 20px;
+      border-right:1px solid var(--line);
+    }
+    .rail .brand{
+      font-family:'Fraunces',serif;font-weight:700;font-size:20px;
+      display:flex;align-items:center;gap:10px;margin-bottom:6px;
+    }
+    .rail .brand .mark{
+      width:34px;height:34px;border-radius:10px;background:var(--ink);color:var(--paper);
+      display:flex;align-items:center;justify-content:center;font-size:16px;
+    }
+    .rail .sub{font-size:12.5px;color:var(--ink-soft);margin-bottom:24px;}
+    .rail-countdown{
+      background:var(--ink);color:var(--paper);border-radius:var(--radius);
+      padding:16px;margin-bottom:22px;position:relative;overflow:hidden;
+    }
+    .rail-countdown::after{content:'';position:absolute;inset:0;background:radial-gradient(160px 90px at 100% 0%, rgba(198,132,44,0.35), transparent 70%);}
+    .rail-countdown .num{font-family:'Fraunces',serif;font-size:32px;font-weight:700;color:var(--amber);position:relative;}
+    .rail-countdown .lbl{font-size:12.5px;color:rgba(239,231,216,0.8);margin-top:2px;position:relative;}
+    .rail-nav{display:flex;flex-direction:column;gap:3px;margin-bottom:20px;}
+    .rail-nav .chip{
+      justify-content:flex-start;display:flex;align-items:center;gap:10px;
+      background:transparent;border:none;padding:10px 12px;border-radius:11px;
+      width:100%;
+    }
+    .rail-nav .chip.active{background:var(--ink);}
+    .rail-nav .chip:hover:not(.active){background:var(--grey-soft);}
+    .rail-legs{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);}
+    .rail-legs .leg-row{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--ink-soft);padding:5px 0;}
+    .rail-legs .leg-row .ldot{width:7px;height:7px;border-radius:50%;background:var(--line);flex:0 0 auto;}
+    .rail-legs .leg-row.done .ldot{background:var(--amber);}
+    .rail-legs .leg-row.active{color:var(--ink);font-weight:700;}
+    .rail-legs .leg-row.active .ldot{background:var(--red);box-shadow:0 0 0 3px var(--red-soft);}
+
+    .chips{display:none;}
+    .wrap{max-width:none;flex:1;padding-bottom:60px;}
+    header.hero{border-radius:0 0 var(--radius-lg) var(--radius-lg);}
+    header.hero .hero-inner{padding:44px 44px 40px;}
+    header.hero .route{font-size:clamp(30px,3vw,42px);max-width:28ch;}
+    header.hero .dates{font-size:15.5px;}
+    main{padding:8px 44px 40px;max-width:900px;}
+    .sync-pill{right:44px;}
+
+    /* two-column card grid on desktop */
+    .card-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .card-grid .card{margin-bottom:0;}
+    .day-divider{grid-column:1 / -1;}
+
+    .discover-hero{height:200px;}
+    .sg-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .sg-grid .sg-card{margin-bottom:0;}
+
+    .fab{right:44px;bottom:36px;}
+
+    /* centered modal instead of bottom sheet */
+    .sheet{
+      left:50%;bottom:auto;top:50%;
+      width:520px;max-width:90vw;
+      transform:translate(-50%,-46%) scale(.96);
+      opacity:0;
+      border-radius:var(--radius-lg);
+      max-height:85vh;
+      transition:transform .3s var(--ease-spring), opacity .25s var(--ease);
+    }
+    .sheet.open{transform:translate(-50%,-50%) scale(1);opacity:1;}
+    .sheet-handle{display:none;}
+  }
+  @media (min-width:1200px){
+    .card-grid{grid-template-columns:1fr 1fr 1fr;}
+    .sg-grid{grid-template-columns:1fr 1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Desktop rail navigation -->
+  <nav class="rail" id="rail">
+    <div class="brand"><span class="mark">✈</span> The Trip</div>
+    <div class="sub">Auckland → Seoul → Osaka → Tokyo</div>
+    <div class="rail-countdown">
+      <div class="num" id="cdNumRail">–</div>
+      <div class="lbl" id="cdLabelRail">loading</div>
+    </div>
+    <div class="rail-nav" id="railNav"></div>
+    <div class="rail-legs" id="railLegs"></div>
+  </nav>
+
+  <div class="wrap">
+    <div class="sync-pill" id="syncPill"><span class="sdot"></span><span id="syncText">Synced</span></div>
+    <header class="hero" id="hero">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-scrim"></div>
+      <div class="hero-inner">
+        <p class="eyebrow"><span class="dot"></span> Shared itinerary</p>
+        <p class="route">Auckland <span class="arrow">→</span> Seoul <span class="arrow">→</span> Osaka <span class="arrow">→</span> Tokyo <span class="arrow">→</span> Auckland</p>
+        <p class="dates">17–31 October 2026 · 15 days</p>
+        <div class="countdown"><span class="cd-badge" id="cdBadge">–</span><span><b id="cdNum">–</b> <span id="cdLabel">loading</span></span></div>
+        <div class="leg-strip" id="legStrip"></div>
+      </div>
+    </header>
+    <div class="chips" id="chips"></div>
+    <main id="main"></main>
+  </div>
+</div>
+<button class="fab" id="fabAdd" aria-label="Add">+</button>
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true">
+  <div class="sheet-handle"></div>
+  <h2 id="sheetTitle">Add to the trip</h2>
+  <div class="type-select" id="typeSelect"></div>
+  <label class="field">
+    <span class="lbl">Title</span>
+    <input type="text" id="fTitle" placeholder="e.g. Jungsik, or Hotel Cappuccino">
+  </label>
+  <div class="row2">
+    <label class="field">
+      <span class="lbl">Date</span>
+      <input type="date" id="fDate" min="2026-10-17" max="2026-10-31">
+    </label>
+    <label class="field">
+      <span class="lbl">Time</span>
+      <input type="time" id="fTime">
+    </label>
+  </div>
+  <label class="field" id="endDateWrap" style="display:none;">
+    <span class="lbl">Check-out</span>
+    <input type="date" id="fEndDate" min="2026-10-17" max="2026-10-31">
+  </label>
+  <label class="field">
+    <span class="lbl">City / area</span>
+    <input type="text" id="fCity" placeholder="e.g. Seoul, Gangnam">
+  </label>
+  <label class="field" id="statusWrap">
+    <span class="lbl">Status</span>
+    <div class="status-toggle">
+      <button type="button" class="sel-idea" id="btnIdea">Idea</button>
+      <button type="button" class="sel-booked" id="btnBooked">Booked</button>
+    </div>
+  </label>
+  <label class="field">
+    <span class="lbl">Notes / link</span>
+    <textarea id="fNotes" placeholder="Reservation details, address, why you wanted to go..."></textarea>
+  </label>
+  <div class="sheet-actions">
+    <button class="btn btn-delete" id="btnDelete" style="display:none;">Delete</button>
+    <button class="btn btn-primary" id="btnSave">Save</button>
+  </div>
+</div>
+<div class="toast" id="toast"><span class="dot"></span><span id="toastText"></span></div>
+<script>
+const API_URL = '/api/trip-data';
+const TRIP_START = new Date('2026-10-17T00:00:00');
+const TRIP_END = new Date('2026-10-31T23:59:59');
+const ICONS = {
+  flight: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-8-8 20-3-8-8-3z"/></svg>',
+  stay: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19V7a2 2 0 0 1 2-2h4v14"/><path d="M9 19V11h8a4 4 0 0 1 4 4v4"/><path d="M3 19h18"/></svg>',
+  food: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v7a2 2 0 0 0 4 0V2M8 9v13M18 2c-2 0-3 2-3 5s1 4 3 4v9"/></svg>',
+  bar: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16l-7 8v7h3M9 19h3v-7L4 4"/></svg>',
+  activity: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.7 6.6L22 9.3l-5.4 4.7 1.7 7-6.3-4-6.3 4 1.7-7L2 9.3l7.3-.7z"/></svg>',
+  note: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.3"/></svg>'
+};
+const TYPE_LABEL = {flight:'Flight', stay:'Stay', food:'Food', bar:'Bar', activity:'Do', note:'Note'};
+const DEFAULT_ITEMS = [
+  {id:'f1', type:'flight', title:'Auckland → Seoul', flightNo:'KE412', date:'2026-10-17', time:'12:05', city:'AKL → ICN', notes:'', status:'booked'},
+  {id:'f2', type:'flight', title:'Seoul → Osaka', flightNo:'KE2119', date:'2026-10-21', time:'16:30', city:'GMP → KIX', notes:'', status:'booked'},
+  {id:'f3', type:'flight', title:'Tokyo → Auckland', flightNo:'KE704', date:'2026-10-31', time:'14:00', city:'NRT → ICN → AKL', notes:'Connects through Incheon', status:'booked'}
+];
+const DISCOVER = [
+  {city:'Seoul', cat:'festival', title:'Seoul Silvergrass Festival', date:'2026-10-18', endDate:'2026-10-24', notes:'Haneul Park — silver grass fields and light installations, free, open till 10pm.'},
+  {city:'Seoul', cat:'festival', title:'Banksy: STILL HERE', date:'', notes:'The Hyundai Seoul — runs through 3 Nov, so no rush.'},
+  {city:'Seoul', cat:'festival', title:'Yoo Youngkuk: A Mountain Within Me', date:'', notes:'SeMA — closes 25 Oct.'},
+  {city:'Kyoto', cat:'festival', title:'Jidai Matsuri + Kurama Fire Festival', date:'2026-10-22', notes:"Two of Kyoto's big three festivals, same day — parade ends ~2:30pm, fire festival starts after dark 30 min away."},
+  {city:'Japan', cat:'festival', title:'NPB Japan Series (baseball)', date:'2026-10-24', notes:'Game 1 of the Japan Series, could run to Nov 1 — check which teams/venues once the Climax Series settles.'},
+  {city:'Tokyo', cat:'festival', title:'Kawagoe Festival', date:'2026-10-17', endDate:'2026-10-18', notes:"Saitama day trip. Tight — right at the very start of your window, only realistic if Japan comes before Korea."},
+  {city:'Tokyo', cat:'festival', title:'Edo in Focus (British Museum exhibit)', date:'', notes:'Tokyo Metropolitan Art Museum — closes 18 Oct, very likely missed doing Korea first. Moves to Osaka (Nakanoshima) from 31 Oct instead.'},
+  {city:'Seoul', cat:'food', title:'Mingles', notes:'Cheongdam-dong — Three MICHELIN Stars, modern Korean built on jang (fermented sauces) and grain.'},
+  {city:'Seoul', cat:'food', title:'Jungsik', notes:'Two MICHELIN Stars — contemporary Korean, book the lunch course for real savings.'},
+  {city:'Seoul', cat:'food', title:'La Yeon', notes:'Inside The Shilla hotel — Two MICHELIN Stars, refined traditional Korean with skyline views.'},
+  {city:'Seoul', cat:'food', title:'Mosu', notes:'Two MICHELIN Stars, modern cuisine from chef Sung Anh.'},
+  {city:'Seoul', cat:'food', title:'Kwonsooksoo', notes:'Two MICHELIN Stars — refined Korean, phenomenal service by reputation.'},
+  {city:'Seoul', cat:'food', title:'Mitou', notes:'Two MICHELIN Stars — Japanese, one of Seoul’s top omakase counters.'},
+  {city:'Seoul', cat:'food', title:'Onjium', notes:'One MICHELIN Star — royal court cuisine, deeply researched and rare to find done this well.'},
+  {city:'Seoul', cat:'food', title:'Gwangjang Market', notes:'Iconic street food market — go for bindaetteok (mung bean pancake) and mayak gimbap.'},
+  {city:'Seoul', cat:'food', title:'Tosokchon Samgyetang', notes:'Historic ginseng chicken soup house, near Gyeongbokgung — a Seoul institution.'},
+  {city:'Seoul', cat:'food', title:'Myeongdong Kyoja', notes:'Bib Gourmand kalguksu (knife-cut noodle soup) — no-frills, always busy, always worth the queue.'},
+  {city:'Osaka', cat:'food', title:'Sushiyoshi', notes:'Two MICHELIN Stars — one of the most acclaimed sushi counters in Osaka.'},
+  {city:'Osaka', cat:'food', title:'Sushi Harasho', notes:'Two MICHELIN Stars, continuously held since debut — Kitashinchi.'},
+  {city:'Osaka', cat:'food', title:'Kaiseki Honda', notes:'Traditional multi-course kaiseki, MICHELIN-starred.'},
+  {city:'Osaka', cat:'food', title:'Kashiwaya Osaka Kitashinchi', notes:'Refined kaiseki in Osaka’s established Kitashinchi dining district.'},
+  {city:'Osaka', cat:'food', title:'Teruya', notes:'Seven-seat kappo counter in Uehonmachi — understated, ingredient-led, MICHELIN-recognised.'},
+  {city:'Osaka', cat:'food', title:'Mizuno', notes:'Dotonbori okonomiyaki since 1945 — MICHELIN Bib Gourmand, expect a queue.'},
+  {city:'Osaka', cat:'food', title:'Akaoni', notes:'MICHELIN-recognised takoyaki with creative toppings like salt-butter and wasabi mayo.'},
+  {city:'Osaka', cat:'food', title:'Kuromon Ichiba Market', notes:'Osaka’s "kitchen" — stall-hop for seafood, wagyu skewers and fresh oysters.'},
+  {city:'Tokyo', cat:'food', title:'Sukiyabashi Jiro', notes:'The Jiro Dreams of Sushi counter — legendary, needs a reservation well ahead.'},
+  {city:'Tokyo', cat:'food', title:'Sushi Kanesaka', notes:'Ginza — Two MICHELIN Stars, chef Shinji Kanesaka is Michelin’s Mentor Chef Award winner.'},
+  {city:'Tokyo', cat:'food', title:'Nishiazabu Sushi Shin', notes:'Two MICHELIN Stars, promoted in the 2026 guide — near-perfect rice and fish balance.'},
+  {city:'Tokyo', cat:'food', title:'Harutaka', notes:'Ginza — Three MICHELIN Stars sushi, phone reservations only, book about a month out.'},
+  {city:'Tokyo', cat:'food', title:'Tempura Motoyoshi', notes:'One MICHELIN Star — "molecular tempura" using liquid nitrogen for an ultra-light crunch.'},
+  {city:'Tokyo', cat:'food', title:'Nodaiwa', notes:'Azabu Iikura — historic eel restaurant, MICHELIN-starred, run by a 97-year-old chef.'},
+  {city:'Tokyo', cat:'food', title:'Sushi Dai', notes:'Toyosu Market — legendary sushi breakfast, arrive early for the line.'},
+  {city:'Tokyo', cat:'food', title:'Ichiran', notes:'Solo ramen booths, tonkotsu broth — the famous chain, open late.'},
+  {city:'Tokyo', cat:'food', title:'Gonpachi Nishi-Azabu', notes:'The restaurant that inspired the Kill Bill fight scene — izakaya classics, lively atmosphere.'},
+  {city:'Seoul', cat:'bar', title:'Zest', notes:"No.2 in Asia's 50 Best Bars 2025, Best Bar in Korea — progressive, sustainability-minded cocktails."},
+  {city:'Seoul', cat:'bar', title:'Bar Cham', notes:"Seochon — seasonal, hyper-local ingredients. No.6, Asia's 50 Best Bars 2025."},
+  {city:'Seoul', cat:'bar', title:'Alice, Cheongdam', notes:"Alice-in-Wonderland speakeasy that jumped 33 spots to No.13 in Asia's 50 Best 2025."},
+  {city:'Seoul', cat:'bar', title:'Le Chamber', notes:"Cheongdam-dong speakeasy, live piano — order the Chamber Story, served in a hollowed-out book. No.50, Asia's 50 Best."},
+  {city:'Seoul', cat:'bar', title:'Pine & Co.', notes:'Mad-scientist-lab concept bar — rotovaps, sous vide, upcycled coffee grounds. No.52, extended list.'},
+  {city:'Seoul', cat:'bar', title:'Soko', notes:'1920s elegance with Korean-Western flair, from bartender-owner Son Soko. No.54, extended list.'},
+  {city:'Seoul', cat:'bar', title:'Gong Gan', notes:'Cocktail bar set inside a traditional hanok.'},
+  {city:'Seoul', cat:'bar', title:'Charles H', notes:"Speakeasy inside the Four Seasons Seoul — vintage glamour, try the Velvet Martini. No.96, extended list."},
+  {city:'Osaka', cat:'bar', title:'Craftroom', notes:"6-seat counter beneath Umeda, ex-Bar K bartender Ryu Fujii. No.58, Asia's 50 Best extended list."},
+  {city:'Osaka', cat:'bar', title:'Bar Nayuta', notes:"Amemura speakeasy behind a hidden door, no menu — bespoke drinks only. No.100, Asia's 50 Best."},
+  {city:'Osaka', cat:'bar', title:'Bar K', notes:"Hommachi basement — the bar Osaka's own bartenders drink at on nights off."},
+  {city:'Osaka', cat:'bar', title:'Bar Augusta Tarlogie', notes:'Kitashinchi whisky bar since 1974, preserved Showa-era basement room.'},
+  {city:'Osaka', cat:'bar', title:'40 Sky Bar & Lounge', notes:'Conrad Osaka, 40th floor — skyline views with live music.'},
+  {city:'Osaka', cat:'bar', title:'Bible Club Osaka', notes:'American-retro speakeasy near Dotonbori with rare spirits.'},
+  {city:'Osaka', cat:'bar', title:'The St. Regis Bar', notes:'Inside the St. Regis Osaka — Azuchi-Momoyama period design, original cocktails.'},
+  {city:'Osaka', cat:'bar', title:'Osaka Cocktail Library Akashic Records', notes:'Shinsaibashi, European-retro styling.'},
+  {city:'Tokyo', cat:'bar', title:'Bar Benfiddich', notes:"Shinjuku apothecary-style bar, house-made bitters and botanicals. No.9, Asia's 50 Best 2025 — Japan's top-ranked bar."},
+  {city:'Tokyo', cat:'bar', title:'Virtù', notes:"39th floor of the Four Seasons Otemachi — sake, shochu and Japanese spirits reinvented. No.18, Asia's 50 Best."},
+  {city:'Tokyo', cat:'bar', title:'Punch Room Tokyo', notes:"The Tokyo Edition, Ginza — shared punch bowls built on Japanese spirits. No.36, Asia's 50 Best."},
+  {city:'Tokyo', cat:'bar', title:'The Bellwood', notes:"Shibuya — inventive twists on classics, sushi-cocktail pairings. No.48, World's 50 Best 2025."},
+  {city:'Tokyo', cat:'bar', title:'Bar Libre', notes:"Ikebukuro, 14 years running, unpretentious cocktails built on Japanese ingredients. No.49, Asia's 50 Best."},
+  {city:'Tokyo', cat:'bar', title:'SG Club', notes:'Shibuya, two floors — a classic cocktail bar upstairs, a flashier flair bar below.'},
+  {city:'Tokyo', cat:'bar', title:'Bar Trench', notes:'Ebisu — botanical-driven cocktails and small plates in a narrow, dim room.'},
+  {city:'Tokyo', cat:'bar', title:'Bar High Five', notes:"Ginza — Hidetsugu Ueno's legendary hard-shake technique, classics done exactly right."},
+  {city:'Tokyo', cat:'bar', title:'Star Bar Ginza', notes:"One of Ginza's most respected old-school cocktail bars."},
+  {city:'Tokyo', cat:'bar', title:'New York Bar', notes:'Park Hyatt Tokyo, 52nd floor — the Lost in Translation bar, skyline views and live jazz.'},
+  {city:'Seoul', cat:'museum', title:'National Museum of Korea', notes:"Yongsan — Korea's largest museum, ancient artefacts to contemporary."},
+  {city:'Seoul', cat:'museum', title:'MMCA Seoul', notes:'National Museum of Modern & Contemporary Art, right next to Gyeongbokgung Palace.'},
+  {city:'Seoul', cat:'museum', title:'Leeum Museum of Art', notes:"Samsung's private collection in Hannam-dong — traditional and contemporary wings."},
+  {city:'Seoul', cat:'museum', title:'Seoul Museum of Art (SeMA)', notes:'City-run museum with several branches — check current exhibitions before you go.'},
+  {city:'Seoul', cat:'museum', title:'National Palace Museum of Korea', notes:'Inside the Gyeongbokgung Palace grounds — Joseon royal history.'},
+  {city:'Seoul', cat:'museum', title:'Arario Museum in Space', notes:'Maze-like former clinic turned contemporary art museum — the building is half the show.'},
+  {city:'Seoul', cat:'museum', title:'Kukje Gallery', notes:'Samcheong-dong — major international contemporary gallery.'},
+  {city:'Seoul', cat:'museum', title:'Gallery Hyundai', notes:"One of Korea's oldest and most influential contemporary galleries."},
+  {city:'Seoul', cat:'museum', title:'DDP (Dongdaemun Design Plaza)', notes:'Zaha Hadid-designed building, rotating design and art exhibitions.'},
+  {city:'Seoul', cat:'museum', title:'Amorepacific Museum of Art', notes:'Yongsan — contemporary art inside the Amorepacific headquarters.'},
+  {city:'Seoul', cat:'museum', title:'HYBE Insight', notes:"Immersive K-pop museum built around HYBE's artists, including BTS."},
+  {city:'Osaka', cat:'museum', title:'Nakanoshima Museum of Art', notes:'Bold black cube building — worth it for the architecture alone.'},
+  {city:'Osaka', cat:'museum', title:'The National Museum of Art, Osaka', notes:'Nakanoshima — mostly underground, rotating Japanese and international contemporary art.'},
+  {city:'Osaka', cat:'museum', title:'Museum of Oriental Ceramics', notes:"Nakanoshima Park — one of the world's best Korean/Chinese/Japanese ceramics collections."},
+  {city:'Osaka', cat:'museum', title:'Fujita Museum', notes:'Historic Japanese and Chinese art and antiquities.'},
+  {city:'Osaka', cat:'museum', title:'Osaka Museum of History', notes:"Next to Osaka Castle — large-scale dioramas of the city's 1,350-year history."},
+  {city:'Osaka', cat:'museum', title:'Osaka Municipal Museum of Fine Arts', notes:'Tennoji — Japanese and Asian art collection.'},
+  {city:'Osaka', cat:'museum', title:'Abeno Harukas Art Museum', notes:"Inside Japan's tallest building — small, well-curated rotating shows."},
+  {city:'Tokyo', cat:'museum', title:'teamLab Planets', notes:'Toyosu — shoes-off, water and mirror rooms, book well ahead.'},
+  {city:'Tokyo', cat:'museum', title:'teamLab Borderless', notes:'Azabudai Hills — borderless digital art that flows between rooms.'},
+  {city:'Tokyo', cat:'museum', title:'Mori Art Museum', notes:'53rd floor, Roppongi Hills — ticket includes the Tokyo City View deck.'},
+  {city:'Tokyo', cat:'museum', title:'National Art Center, Tokyo', notes:"Roppongi — one of Japan's largest exhibition spaces, no permanent collection."},
+  {city:'Tokyo', cat:'museum', title:'Suntory Museum of Art', notes:'Roppongi — traditional Japanese art, "art in life" focus.'},
+  {city:'Tokyo', cat:'museum', title:'21_21 Design Sight', notes:'Tadao Ando-designed design museum in Tokyo Midtown.'},
+  {city:'Tokyo', cat:'museum', title:'Yayoi Kusama Museum', notes:'Shinjuku — reservation-only, book ahead of your trip.'},
+  {city:'Tokyo', cat:'museum', title:'Tokyo National Museum', notes:"Ueno — Japan's oldest and largest museum; hosts the Edo in Focus British Museum show through 18 Oct."},
+  {city:'Tokyo', cat:'museum', title:'Nezu Museum', notes:'Omotesando — traditional Japanese and Asian art with a stunning garden.'},
+  {city:'Tokyo', cat:'museum', title:'Sumida Hokusai Museum', notes:'Ryogoku — dedicated to Hokusai, striking angular building.'},
+  {city:'Tokyo', cat:'museum', title:'Ghibli Museum', notes:'Mitaka — reservation-only, sells out weeks ahead.'}
+];
+const DISCOVER_CATS = [
+  {k:'food', label:'Restaurants'},
+  {k:'bar', label:'Bars'},
+  {k:'museum', label:'Museums & galleries'},
+  {k:'festival', label:'Festivals & events'}
+];
+const CITY_IMAGES = {
+  'Seoul':'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=1400&q=70',
+  'Osaka':'https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=1400&q=70',
+  'Tokyo':'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1400&q=70',
+  'Kyoto':'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1400&q=70',
+  'Japan':'https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=1400&q=70',
+  'default':'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=1400&q=70'
+};
+const LEGS = [
+  {city:'Seoul', from:'2026-10-17', to:'2026-10-21'},
+  {city:'Osaka', from:'2026-10-21', to:'2026-10-26'},
+  {city:'Tokyo', from:'2026-10-26', to:'2026-10-31'}
+];
+let items = [];
+let activeFilter = 'all';
+let editingId = null;
+let discoverCat = 'food';
+let discoverCity = 'Seoul';
+function uid(){ return 'i' + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+function toast(msg, isErr){
+  const t = document.getElementById('toast');
+  document.getElementById('toastText').textContent = msg;
+  t.classList.toggle('err', !!isErr);
+  t.classList.add('show');
+  clearTimeout(t._hideTimer);
+  t._hideTimer = setTimeout(()=>t.classList.remove('show'), 2000);
+}
+function setSync(state){
+  const pill = document.getElementById('syncPill');
+  const txt = document.getElementById('syncText');
+  pill.classList.remove('saving','err');
+  if(state === 'saving'){ pill.classList.add('saving','show'); txt.textContent = 'Saving…'; }
+  else if(state === 'err'){ pill.classList.add('err','show'); txt.textContent = "Couldn't sync"; }
+  else if(state === 'synced'){ pill.classList.add('show'); txt.textContent = 'Synced'; clearTimeout(pill._t); pill._t = setTimeout(()=>pill.classList.remove('show'), 1800); }
+}
+async function load(){
+  try{
+    const res = await fetch(API_URL, { headers:{'accept':'application/json'} });
+    if(!res.ok) throw new Error('bad status ' + res.status);
+    const text = await res.text();
+    items = text ? JSON.parse(text) : null;
+    if(!items || !Array.isArray(items) || items.length === 0){
+      items = DEFAULT_ITEMS.slice();
+      await persist();
+    }
+  }catch(e){
+    items = DEFAULT_ITEMS.slice();
+    toast("Couldn't load — showing defaults", true);
+  }
+  render();
+}
+async function persist(){
+  setSync('saving');
+  try{
+    const res = await fetch(API_URL, {
+      method:'POST',
+      headers:{'content-type':'application/json'},
+      body: JSON.stringify(items)
+    });
+    if(!res.ok) throw new Error('bad status ' + res.status);
+    setSync('synced');
+  }catch(e){
+    setSync('err');
+    toast("Couldn't save — try again", true);
+  }
+}
+function fmtDay(dateStr){
+  const d = new Date(dateStr + 'T00:00:00');
+  return {
+    dow: d.toLocaleDateString('en-NZ', {weekday:'short'}).toUpperCase(),
+    full: d.toLocaleDateString('en-NZ', {day:'numeric', month:'short'})
+  };
+}
+function fmtTime(t){
+  if(!t) return '';
+  const [h,m] = t.split(':').map(Number);
+  const ap = h >= 12 ? 'pm' : 'am';
+  const h12 = ((h+11)%12)+1;
+  return m ? `${h12}:${String(m).padStart(2,'0')}${ap}` : `${h12}${ap}`;
+}
+function currentLeg(){
+  const now = new Date();
+  for(const leg of LEGS){
+    if(now >= new Date(leg.from+'T00:00:00') && now < new Date(leg.to+'T23:59:59')) return leg.city;
+  }
+  if(now < TRIP_START) return LEGS[0].city;
+  return LEGS[LEGS.length-1].city;
+}
+function updateHeroImage(){
+  const city = activeFilter === 'discover' ? discoverCity : currentLeg();
+  const img = CITY_IMAGES[city] || CITY_IMAGES.default;
+  const bg = document.getElementById('heroBg');
+  bg.style.backgroundImage = `url('${img}')`;
+}
+function updateCountdown(){
+  const now = new Date();
+  let num, label;
+  if(now < TRIP_START){
+    const days = Math.ceil((TRIP_START - now)/86400000);
+    num = days; label = days === 1 ? 'day to go' : 'days to go';
+  } else if(now <= TRIP_END){
+    const day = Math.floor((now - TRIP_START)/86400000) + 1;
+    num = day; label = 'of 15, on the trip';
+  } else {
+    num = '✓'; label = 'trip done';
+  }
+  document.getElementById('cdNum').textContent = num;
+  document.getElementById('cdLabel').textContent = label;
+  document.getElementById('cdBadge').textContent = (typeof num === 'number') ? num : '✓';
+  document.getElementById('cdNumRail').textContent = num;
+  document.getElementById('cdLabelRail').textContent = label;
+  renderLegStrip();
+}
+function renderLegStrip(){
+  const now = new Date();
+  const el = document.getElementById('legStrip');
+  const railEl = document.getElementById('railLegs');
+  let stripHtml = '', railHtml = '';
+  LEGS.forEach(leg => {
+    const from = new Date(leg.from+'T00:00:00'), to = new Date(leg.to+'T23:59:59');
+    const done = now >= to;
+    const active = now >= from && now < to;
+    stripHtml += `<div class="leg ${done?'done':''} ${active?'active':''}" title="${leg.city}"></div>`;
+    railHtml += `<div class="leg-row ${done?'done':''} ${active?'active':''}"><span class="ldot"></span>${leg.city}</div>`;
+  });
+  el.innerHTML = stripHtml;
+  if(railEl) railEl.innerHTML = railHtml;
+}
+function setFilter(t){
+  activeFilter = t;
+  render();
+  document.getElementById('main').scrollIntoView({block:'start', behavior:'smooth'});
+}
+function renderChips(){
+  const types = ['all','flight','stay','food','bar','activity','note','discover'];
+  const labels = {all:'All', flight:'Flights', stay:'Stays', food:'Food', bar:'Bars', activity:'Do', note:'Notes', discover:'Discover'};
+  const el = document.getElementById('chips');
+  const railEl = document.getElementById('railNav');
+  const chipsHtml = types.map(t =>
+    `<div class="chip ${t==='discover'?'discover':''} ${t===activeFilter?'active':''}" data-t="${t}">${labels[t]}</div>`
+  ).join('');
+  el.innerHTML = chipsHtml;
+  if(railEl) railEl.innerHTML = chipsHtml;
+  [...el.children, ...(railEl ? railEl.children : [])].forEach(c => c.onclick = () => setFilter(c.dataset.t));
+}
+function render(){
+  renderChips();
+  updateCountdown();
+  updateHeroImage();
+  const main = document.getElementById('main');
+  if(activeFilter === 'discover'){
+    main.innerHTML = discoverHTML();
+    wireDiscover();
+    return;
+  }
+  const filtered = items.filter(i => activeFilter === 'all' || i.type === activeFilter);
+  const dated = filtered.filter(i => i.date).sort((a,b)=> (a.date+a.time).localeCompare(b.date+b.time));
+  const undated = filtered.filter(i => !i.date);
+  let html = '';
+  if(dated.length === 0 && undated.length === 0){
+    html += `<div class="empty"><span class="emoji">🧭</span><div class="big">Nothing here yet</div>Tap + to add a flight, stay, restaurant or something to do — or browse Discover for ideas.</div>`;
+    main.innerHTML = html;
+    return;
+  }
+  html += `<div class="card-grid">`;
+  let lastDate = null;
+  const now = new Date();
+  const todayStr = now.toISOString().slice(0,10);
+  dated.forEach(item => {
+    if(item.date !== lastDate){
+      const {dow, full} = fmtDay(item.date);
+      const isToday = item.date === todayStr;
+      html += `<div class="day-divider ${isToday?'today':''}"><span class="dow">${dow}</span><span class="full">${full}${isToday?' · today':''}</span></div>`;
+      lastDate = item.date;
+    }
+    html += cardHTML(item);
+  });
+  if(undated.length){
+    if(dated.length){
+      html += `<div class="day-divider"><span class="dow">Someday</span><span class="full">no date yet</span></div>`;
+    }
+    undated.forEach(item => html += cardHTML(item));
+  }
+  html += `</div>`;
+  if(activeFilter === 'all'){
+    html += `<div class="discover-cta" id="discoverCta">Browse cocktail bars, museums &amp; festivals we've picked out →</div>`;
+  }
+  main.innerHTML = html;
+  main.querySelectorAll('.card[data-id]').forEach((c,idx) => {
+    c.style.animationDelay = (idx * 0.03) + 's';
+    c.onclick = () => openEdit(c.dataset.id);
+  });
+  main.querySelectorAll('.day-divider').forEach((d,idx) => { d.style.animationDelay = (idx * 0.04) + 's'; });
+  const cta = document.getElementById('discoverCta');
+  if(cta) cta.onclick = () => setFilter('discover');
+}
+function cardHTML(item){
+  const timeStr = item.time ? fmtTime(item.time) : '';
+  let metaBits = [];
+  if(item.type === 'flight' && item.flightNo) metaBits.push(item.flightNo);
+  if(item.city) metaBits.push(item.city);
+  if(item.endDate) metaBits.push('until ' + fmtDay(item.endDate).full);
+  const meta = metaBits.join(' · ');
+  const tagsHtml = (item.type !== 'flight' && item.status)
+    ? `<div class="tags"><span class="tag ${item.status}">${item.status === 'booked' ? 'Booked' : 'Idea'}</span></div>` : '';
+  return `<div class="card type-${item.type}" data-id="${item.id}">
+    <div class="icon">${ICONS[item.type]}</div>
+    <div class="body">
+      <div class="top-row"><span class="title">${escapeHtml(item.title)}</span><span class="time">${timeStr}</span></div>
+      ${meta ? `<div class="meta">${escapeHtml(meta)}</div>` : ''}
+      ${tagsHtml}
+    </div>
+  </div>`;
+}
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+function discoverHTML(){
+  const citiesForCat = [...new Set(DISCOVER.filter(d => d.cat === discoverCat).map(d => d.city))];
+  if(!citiesForCat.includes(discoverCity)) discoverCity = citiesForCat[0];
+  const heroImg = CITY_IMAGES[discoverCity] || CITY_IMAGES.default;
+  let html = `<div class="discover-hero" style="background-image:url('${heroImg}')"><span class="dh-label">${escapeHtml(discoverCity)}</span></div>`;
+  html += `<div class="subtabs cat">`;
+  DISCOVER_CATS.forEach(c => {
+    html += `<div class="subtab ${c.k===discoverCat?'active':''}" data-cat="${c.k}">${c.label}</div>`;
+  });
+  html += `</div>`;
+  html += `<div class="subtabs city">`;
+  citiesForCat.forEach(c => {
+    html += `<div class="subtab ${c===discoverCity?'active':''}" data-city="${c}">${c}</div>`;
+  });
+  html += `</div>`;
+  html += `<p class="suggest-sub">Tap + to add one to your trip.</p>`;
+  const list = DISCOVER.filter(d => d.cat === discoverCat && d.city === discoverCity);
+  html += `<div class="sg-grid">`;
+  list.forEach((d, idx) => {
+    const already = items.some(i => i.title.toLowerCase() === d.title.toLowerCase());
+    const dateBit = d.date ? fmtDay(d.date).full + (d.endDate ? '–' + fmtDay(d.endDate).full : '') : null;
+    html += `<div class="sg-card" style="animation-delay:${idx*0.03}s">
+      <div class="body">
+        <div class="title">${escapeHtml(d.title)}</div>
+        ${dateBit ? `<div class="meta">${escapeHtml(dateBit)}</div>` : ''}
+        <div class="meta">${escapeHtml(d.notes)}</div>
+      </div>
+      <button class="sg-add ${already?'added':''}" data-idx="${idx}" ${already?'disabled':''}>${already?'✓':'+'}</button>
+    </div>`;
+  });
+  html += `</div>`;
+  return html;
+}
+function wireDiscover(){
+  document.querySelectorAll('.subtab[data-cat]').forEach(el => {
+    el.onclick = () => { discoverCat = el.dataset.cat; render(); };
+  });
+  document.querySelectorAll('.subtab[data-city]').forEach(el => {
+    el.onclick = () => { discoverCity = el.dataset.city; render(); };
+  });
+  const list = DISCOVER.filter(d => d.cat === discoverCat && d.city === discoverCity);
+  document.querySelectorAll('.sg-add').forEach(btn => {
+    btn.onclick = () => addDiscoverItem(list[Number(btn.dataset.idx)]);
+  });
+}
+function addDiscoverItem(d){
+  const type = (d.cat === 'bar') ? 'bar' : (d.cat === 'food') ? 'food' : 'activity';
+  items.push({
+    id: uid(), type, title: d.title, date: d.date || '', endDate: d.endDate || '',
+    time:'', city: d.city, notes: d.notes, status:'idea'
+  });
+  persist();
+  render();
+  toast('Added to the trip');
+}
+const sheet = document.getElementById('sheet');
+const scrim = document.getElementById('scrim');
+let currentType = 'activity';
+function buildTypeSelect(){
+  const el = document.getElementById('typeSelect');
+  el.innerHTML = Object.keys(ICONS).map(t =>
+    `<div class="type-opt ${t===currentType?'sel':''}" data-t="${t}">${ICONS[t]}<span class="lbl">${TYPE_LABEL[t]}</span></div>`
+  ).join('');
+  [...el.children].forEach(o => o.onclick = () => { currentType = o.dataset.t; buildTypeSelect(); syncFieldsForType(); });
+}
+function syncFieldsForType(){
+  document.getElementById('endDateWrap').style.display = currentType === 'stay' ? 'block' : 'none';
+  document.getElementById('statusWrap').style.display = currentType === 'flight' ? 'none' : 'block';
+}
+function openSheet(){
+  scrim.classList.add('open');
+  sheet.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSheet(){
+  scrim.classList.remove('open');
+  sheet.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('scrim').onclick = closeSheet;
+document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && sheet.classList.contains('open')) closeSheet(); });
+function openAdd(){
+  editingId = null;
+  document.getElementById('sheetTitle').textContent = 'Add to the trip';
+  document.getElementById('btnDelete').style.display = 'none';
+  currentType = 'activity';
+  buildTypeSelect();
+  syncFieldsForType();
+  document.getElementById('fTitle').value = '';
+  document.getElementById('fDate').value = '';
+  document.getElementById('fTime').value = '';
+  document.getElementById('fEndDate').value = '';
+  document.getElementById('fCity').value = '';
+  document.getElementById('fNotes').value = '';
+  setStatus('idea');
+  openSheet();
+}
+function openEdit(id){
+  const item = items.find(i => i.id === id);
+  if(!item) return;
+  editingId = id;
+  document.getElementById('sheetTitle').textContent = 'Edit';
+  document.getElementById('btnDelete').style.display = 'block';
+  currentType = item.type;
+  buildTypeSelect();
+  syncFieldsForType();
+  document.getElementById('fTitle').value = item.title || '';
+  document.getElementById('fDate').value = item.date || '';
+  document.getElementById('fTime').value = item.time || '';
+  document.getElementById('fEndDate').value = item.endDate || '';
+  document.getElementById('fCity').value = item.city || '';
+  document.getElementById('fNotes').value = item.notes || '';
+  setStatus(item.status || 'idea');
+  openSheet();
+}
+function setStatus(s){
+  document.getElementById('btnIdea').classList.toggle('on', s === 'idea');
+  document.getElementById('btnBooked').classList.toggle('on', s === 'booked');
+}
+document.getElementById('btnIdea').onclick = () => setStatus('idea');
+document.getElementById('btnBooked').onclick = () => setStatus('booked');
+document.getElementById('fabAdd').onclick = openAdd;
+document.getElementById('btnSave').onclick = async () => {
+  const title = document.getElementById('fTitle').value.trim();
+  if(!title){ toast('Give it a title', true); return; }
+  const status = document.getElementById('btnBooked').classList.contains('on') ? 'booked' : 'idea';
+  const data = {
+    type: currentType,
+    title,
+    date: document.getElementById('fDate').value,
+    time: document.getElementById('fTime').value,
+    endDate: currentType === 'stay' ? document.getElementById('fEndDate').value : '',
+    city: document.getElementById('fCity').value.trim(),
+    notes: document.getElementById('fNotes').value.trim(),
+    status
+  };
+  if(editingId){
+    const idx = items.findIndex(i => i.id === editingId);
+    items[idx] = {...items[idx], ...data};
+  } else {
+    items.push({id: uid(), ...data});
+  }
+  closeSheet();
+  render();
+  await persist();
+  toast('Saved');
+};
+document.getElementById('btnDelete').onclick = async () => {
+  items = items.filter(i => i.id !== editingId);
+  closeSheet();
+  render();
+  await persist();
+  toast('Removed');
+};
+load();
+setInterval(updateCountdown, 60000);
+</script>
+</body>
+</html>
