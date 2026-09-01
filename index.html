@@ -439,6 +439,28 @@
   .sg-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
   .sg-card .body{flex:1;}
   .sg-card .title{font-weight:600;font-size:14.5px;letter-spacing:-.1px;}
+  .title-link{
+    color:inherit;
+    text-decoration:none;
+    background-image:linear-gradient(currentColor, currentColor);
+    background-repeat:no-repeat;
+    background-position:0 100%;
+    background-size:0% 1px;
+    padding-bottom:1px;
+    transition:background-size .2s var(--ease), color .2s var(--ease);
+  }
+  .title-link:hover{
+    color:var(--amber-ink);
+    background-size:100% 1px;
+  }
+  .title-link::after{
+    content:'↗';
+    font-size:0.72em;
+    margin-left:4px;
+    opacity:.55;
+    display:inline-block;
+    transform:translateY(-1px);
+  }
   .sg-card .meta{font-size:12.5px;color:var(--ink-soft);margin-top:3px;line-height:1.45;}
   .sg-add{
     flex:0 0 auto;
@@ -1122,7 +1144,7 @@ function cardHTML(item){
   return `<div class="card type-${item.type}" data-id="${item.id}">
     <div class="icon">${ICONS[item.type]}</div>
     <div class="body">
-      <div class="top-row"><span class="title">${escapeHtml(item.title)}</span><span class="time">${timeStr}</span></div>
+      <div class="top-row"><span class="title">${titleLinkHTML(item.title, item.city)}</span><span class="time">${timeStr}</span></div>
       ${meta ? `<div class="meta">${escapeHtml(meta)}</div>` : ''}
       ${tagsHtml}
     </div>
@@ -1130,6 +1152,13 @@ function cardHTML(item){
 }
 function escapeHtml(s){
   return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+function searchLink(title, city){
+  const q = [title, city].filter(Boolean).join(' ');
+  return 'https://www.google.com/search?q=' + encodeURIComponent(q);
+}
+function titleLinkHTML(title, city){
+  return `<a class="title-link" href="${searchLink(title, city)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${escapeHtml(title)}</a>`;
 }
 function discoverHTML(){
   const citiesForCat = [...new Set(DISCOVER.filter(d => d.cat === discoverCat).map(d => d.city))];
@@ -1154,7 +1183,7 @@ function discoverHTML(){
     const dateBit = d.date ? fmtDay(d.date).full + (d.endDate ? '–' + fmtDay(d.endDate).full : '') : null;
     html += `<div class="sg-card" style="animation-delay:${idx*0.03}s">
       <div class="body">
-        <div class="title">${escapeHtml(d.title)}</div>
+        <div class="title">${titleLinkHTML(d.title, d.city)}</div>
         ${dateBit ? `<div class="meta">${escapeHtml(dateBit)}</div>` : ''}
         <div class="meta">${escapeHtml(d.notes)}</div>
       </div>
