@@ -299,8 +299,8 @@
   }
   .card:hover .icon{transform:scale(1.08) rotate(-4deg);}
   .icon svg{width:18px;height:18px;}
-  .type-flight .icon{background:var(--amber-soft);}
-  .type-flight .icon svg{stroke:var(--amber-ink);}
+  .type-flight .icon,.type-train .icon{background:var(--amber-soft);}
+  .type-flight .icon svg,.type-train .icon svg{stroke:var(--amber-ink);}
   .type-stay .icon{background:var(--green-soft);}
   .type-stay .icon svg{stroke:var(--green-ink);}
   .type-food .icon{background:var(--red-soft);}
@@ -540,7 +540,7 @@
   }
   .type-select{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(4,1fr);
     gap:8px;
     margin-bottom:18px;
   }
@@ -827,13 +827,14 @@ const TRIP_START = new Date('2026-10-17T00:00:00');
 const TRIP_END = new Date('2026-10-31T23:59:59');
 const ICONS = {
   flight: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-8-8 20-3-8-8-3z"/></svg>',
+  train: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="13" rx="4"/><path d="M4 11h16"/><path d="M8 16l-2.5 5M16 16l2.5 5"/><circle cx="8.5" cy="13.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="15.5" cy="13.5" r="0.6" fill="currentColor" stroke="none"/></svg>',
   stay: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19V7a2 2 0 0 1 2-2h4v14"/><path d="M9 19V11h8a4 4 0 0 1 4 4v4"/><path d="M3 19h18"/></svg>',
   food: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v7a2 2 0 0 0 4 0V2M8 9v13M18 2c-2 0-3 2-3 5s1 4 3 4v9"/></svg>',
   bar: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16l-7 8v7h3M9 19h3v-7L4 4"/></svg>',
   activity: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.7 6.6L22 9.3l-5.4 4.7 1.7 7-6.3-4-6.3 4 1.7-7L2 9.3l7.3-.7z"/></svg>',
   note: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.3"/></svg>'
 };
-const TYPE_LABEL = {flight:'Flight', stay:'Stay', food:'Food', bar:'Bar', activity:'Do', note:'Note'};
+const TYPE_LABEL = {flight:'Flight', train:'Train', stay:'Stay', food:'Food', bar:'Bar', activity:'Do', note:'Note'};
 const DEFAULT_ITEMS = [
   {id:'f1', type:'flight', title:'Auckland → Seoul', flightNo:'KE412', date:'2026-10-17', time:'12:05', city:'AKL → ICN', notes:'', status:'booked'},
   {id:'f2', type:'flight', title:'Seoul → Osaka', flightNo:'KE2119', date:'2026-10-21', time:'16:30', city:'GMP → KIX', notes:'', status:'booked'},
@@ -1070,8 +1071,8 @@ function setFilter(t){
   document.getElementById('main').scrollIntoView({block:'start', behavior:'smooth'});
 }
 function renderChips(){
-  const types = ['all','flight','stay','food','bar','activity','note','discover'];
-  const labels = {all:'All', flight:'Flights', stay:'Stays', food:'Food', bar:'Bars', activity:'Do', note:'Notes', discover:'Discover'};
+  const types = ['all','travel','stay','food','bar','activity','note','discover'];
+  const labels = {all:'All', travel:'Travel', stay:'Stays', food:'Food', bar:'Bars', activity:'Do', note:'Notes', discover:'Discover'};
   const el = document.getElementById('chips');
   const railEl = document.getElementById('railNav');
   const chipsHtml = types.map(t =>
@@ -1091,7 +1092,8 @@ function render(){
     wireDiscover();
     return;
   }
-  const filtered = items.filter(i => activeFilter === 'all' || i.type === activeFilter);
+  const TRAVEL_TYPES = ['flight','train'];
+  const filtered = items.filter(i => activeFilter === 'all' || (activeFilter === 'travel' ? TRAVEL_TYPES.includes(i.type) : i.type === activeFilter));
   const dated = filtered.filter(i => i.date).sort((a,b)=> (a.date+a.time).localeCompare(b.date+b.time));
   const undated = filtered.filter(i => !i.date);
   let html = '';
