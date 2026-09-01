@@ -503,8 +503,9 @@
     z-index:51;
     padding:6px 20px calc(24px + env(safe-area-inset-bottom));
     box-shadow:var(--shadow-lg);
+    pointer-events:none;
   }
-  .sheet.open{transform:translateY(0);}
+  .sheet.open{transform:translateY(0);pointer-events:auto;}
   .sheet-handle{
     width:38px;height:4px;background:var(--line);
     border-radius:99px;margin:12px auto 16px;
