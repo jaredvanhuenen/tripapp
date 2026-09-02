@@ -350,6 +350,9 @@
   .tag.idea{background:var(--amber-soft);color:var(--amber-ink);}
   .tag.booked{background:var(--green-soft);color:var(--green-ink);}
   .tag.booked::before{content:'✓ ';}
+  .tag.price-cheap,.tag.price-inexpensive{background:var(--green-soft);color:var(--green-ink);font-variant-numeric:tabular-nums;}
+  .tag.price-decent,.tag.price-moderate{background:var(--amber-soft);color:var(--amber-ink);font-variant-numeric:tabular-nums;}
+  .tag.price-spenny{background:var(--red-soft);color:var(--red-ink);font-variant-numeric:tabular-nums;}
 
   .empty{
     text-align:center;
@@ -867,59 +870,59 @@ const DISCOVER = [
   {city:'Japan', cat:'festival', title:'NPB Japan Series (baseball)', date:'2026-10-24', notes:'Game 1 of the Japan Series, could run to Nov 1 — check which teams/venues once the Climax Series settles.'},
   {city:'Tokyo', cat:'festival', title:'Kawagoe Festival', date:'2026-10-17', endDate:'2026-10-18', notes:"Saitama day trip. Tight — right at the very start of your window, only realistic if Japan comes before Korea."},
   {city:'Tokyo', cat:'festival', title:'Edo in Focus (British Museum exhibit)', date:'', notes:'Tokyo Metropolitan Art Museum — closes 18 Oct, very likely missed doing Korea first. Moves to Osaka (Nakanoshima) from 31 Oct instead.'},
-  {city:'Seoul', cat:'food', title:'Mingles', notes:'Cheongdam-dong — Three MICHELIN Stars, modern Korean built on jang (fermented sauces) and grain.'},
-  {city:'Seoul', cat:'food', title:'Jungsik', notes:'Two MICHELIN Stars — contemporary Korean, book the lunch course for real savings.'},
-  {city:'Seoul', cat:'food', title:'La Yeon', notes:'Inside The Shilla hotel — Two MICHELIN Stars, refined traditional Korean with skyline views.'},
-  {city:'Seoul', cat:'food', title:'Mosu', notes:'Two MICHELIN Stars, modern cuisine from chef Sung Anh.'},
-  {city:'Seoul', cat:'food', title:'Kwonsooksoo', notes:'Two MICHELIN Stars — refined Korean, phenomenal service by reputation.'},
-  {city:'Seoul', cat:'food', title:'Mitou', notes:'Two MICHELIN Stars — Japanese, one of Seoul’s top omakase counters.'},
-  {city:'Seoul', cat:'food', title:'Onjium', notes:'One MICHELIN Star — royal court cuisine, deeply researched and rare to find done this well.'},
-  {city:'Seoul', cat:'food', title:'Gwangjang Market', notes:'Iconic street food market — go for bindaetteok (mung bean pancake) and mayak gimbap.'},
-  {city:'Seoul', cat:'food', title:'Tosokchon Samgyetang', notes:'Historic ginseng chicken soup house, near Gyeongbokgung — a Seoul institution.'},
-  {city:'Seoul', cat:'food', title:'Myeongdong Kyoja', notes:'Bib Gourmand kalguksu (knife-cut noodle soup) — no-frills, always busy, always worth the queue.'},
-  {city:'Osaka', cat:'food', title:'Sushiyoshi', notes:'Two MICHELIN Stars — one of the most acclaimed sushi counters in Osaka.'},
-  {city:'Osaka', cat:'food', title:'Sushi Harasho', notes:'Two MICHELIN Stars, continuously held since debut — Kitashinchi.'},
-  {city:'Osaka', cat:'food', title:'Kaiseki Honda', notes:'Traditional multi-course kaiseki, MICHELIN-starred.'},
-  {city:'Osaka', cat:'food', title:'Kashiwaya Osaka Kitashinchi', notes:'Refined kaiseki in Osaka’s established Kitashinchi dining district.'},
-  {city:'Osaka', cat:'food', title:'Teruya', notes:'Seven-seat kappo counter in Uehonmachi — understated, ingredient-led, MICHELIN-recognised.'},
-  {city:'Osaka', cat:'food', title:'Mizuno', notes:'Dotonbori okonomiyaki since 1945 — MICHELIN Bib Gourmand, expect a queue.'},
-  {city:'Osaka', cat:'food', title:'Akaoni', notes:'MICHELIN-recognised takoyaki with creative toppings like salt-butter and wasabi mayo.'},
-  {city:'Osaka', cat:'food', title:'Kuromon Ichiba Market', notes:'Osaka’s "kitchen" — stall-hop for seafood, wagyu skewers and fresh oysters.'},
-  {city:'Tokyo', cat:'food', title:'Sukiyabashi Jiro', notes:'The Jiro Dreams of Sushi counter — legendary, needs a reservation well ahead.'},
-  {city:'Tokyo', cat:'food', title:'Sushi Kanesaka', notes:'Ginza — Two MICHELIN Stars, chef Shinji Kanesaka is Michelin’s Mentor Chef Award winner.'},
-  {city:'Tokyo', cat:'food', title:'Nishiazabu Sushi Shin', notes:'Two MICHELIN Stars, promoted in the 2026 guide — near-perfect rice and fish balance.'},
-  {city:'Tokyo', cat:'food', title:'Harutaka', notes:'Ginza — Three MICHELIN Stars sushi, phone reservations only, book about a month out.'},
-  {city:'Tokyo', cat:'food', title:'Tempura Motoyoshi', notes:'One MICHELIN Star — "molecular tempura" using liquid nitrogen for an ultra-light crunch.'},
-  {city:'Tokyo', cat:'food', title:'Nodaiwa', notes:'Azabu Iikura — historic eel restaurant, MICHELIN-starred, run by a 97-year-old chef.'},
-  {city:'Tokyo', cat:'food', title:'Sushi Dai', notes:'Toyosu Market — legendary sushi breakfast, arrive early for the line.'},
-  {city:'Tokyo', cat:'food', title:'Ichiran', notes:'Solo ramen booths, tonkotsu broth — the famous chain, open late.'},
-  {city:'Tokyo', cat:'food', title:'Gonpachi Nishi-Azabu', notes:'The restaurant that inspired the Kill Bill fight scene — izakaya classics, lively atmosphere.'},
-  {city:'Seoul', cat:'bar', title:'Zest', world50:true, world50Rank:16, notes:"No.16, World's 50 Best Bars 2025 (also No.2 Asia's 50 Best, Best Bar in Korea) — progressive, sustainability-minded cocktails."},
-  {city:'Seoul', cat:'bar', title:'Bar Cham', notes:"Seochon — seasonal, hyper-local ingredients. No.6, Asia's 50 Best Bars 2025."},
-  {city:'Seoul', cat:'bar', title:'Alice, Cheongdam', notes:"Alice-in-Wonderland speakeasy that jumped 33 spots to No.13 in Asia's 50 Best 2025."},
-  {city:'Seoul', cat:'bar', title:'Le Chamber', notes:"Cheongdam-dong speakeasy, live piano — order the Chamber Story, served in a hollowed-out book. No.50, Asia's 50 Best."},
-  {city:'Seoul', cat:'bar', title:'Pine & Co.', notes:'Mad-scientist-lab concept bar — rotovaps, sous vide, upcycled coffee grounds. No.52, extended list.'},
-  {city:'Seoul', cat:'bar', title:'Soko', notes:'1920s elegance with Korean-Western flair, from bartender-owner Son Soko. No.54, extended list.'},
-  {city:'Seoul', cat:'bar', title:'Gong Gan', notes:'Cocktail bar set inside a traditional hanok.'},
-  {city:'Seoul', cat:'bar', title:'Charles H', notes:"Speakeasy inside the Four Seasons Seoul — vintage glamour, try the Velvet Martini. No.96, extended list."},
-  {city:'Osaka', cat:'bar', title:'Craftroom', notes:"6-seat counter beneath Umeda, ex-Bar K bartender Ryu Fujii. No.58, Asia's 50 Best extended list."},
-  {city:'Osaka', cat:'bar', title:'Bar Nayuta', notes:"Amemura speakeasy behind a hidden door, no menu — bespoke drinks only. No.100, Asia's 50 Best."},
-  {city:'Osaka', cat:'bar', title:'Bar K', notes:"Hommachi basement — the bar Osaka's own bartenders drink at on nights off."},
-  {city:'Osaka', cat:'bar', title:'Bar Augusta Tarlogie', notes:'Kitashinchi whisky bar since 1974, preserved Showa-era basement room.'},
-  {city:'Osaka', cat:'bar', title:'40 Sky Bar & Lounge', notes:'Conrad Osaka, 40th floor — skyline views with live music.'},
-  {city:'Osaka', cat:'bar', title:'Bible Club Osaka', notes:'American-retro speakeasy near Dotonbori with rare spirits.'},
-  {city:'Osaka', cat:'bar', title:'The St. Regis Bar', notes:'Inside the St. Regis Osaka — Azuchi-Momoyama period design, original cocktails.'},
-  {city:'Osaka', cat:'bar', title:'Osaka Cocktail Library Akashic Records', notes:'Shinsaibashi, European-retro styling.'},
-  {city:'Tokyo', cat:'bar', title:'Bar Benfiddich', world50:true, world50Rank:18, notes:"Shinjuku apothecary-style bar, house-made bitters and botanicals. No.18, World's 50 Best Bars 2025 (No.9 Asia's 50 Best) — Japan's top-ranked bar."},
-  {city:'Tokyo', cat:'bar', title:'Virtù', world50:true, world50Rank:45, notes:"39th floor of the Four Seasons Otemachi — sake, shochu and Japanese spirits reinvented. No.45, World's 50 Best Bars 2025 (No.18 Asia's 50 Best)."},
-  {city:'Tokyo', cat:'bar', title:'Punch Room Tokyo', notes:"The Tokyo Edition, Ginza — shared punch bowls built on Japanese spirits. No.36, Asia's 50 Best."},
-  {city:'Tokyo', cat:'bar', title:'The Bellwood', world50:true, world50Rank:48, notes:"Shibuya — inventive twists on classics, sushi-cocktail pairings. No.48, World's 50 Best Bars 2025."},
-  {city:'Tokyo', cat:'bar', title:'Bar Libre', notes:"Ikebukuro, 14 years running, unpretentious cocktails built on Japanese ingredients. No.49, Asia's 50 Best."},
-  {city:'Tokyo', cat:'bar', title:'SG Club', notes:'Shibuya, two floors — a classic cocktail bar upstairs, a flashier flair bar below.'},
-  {city:'Tokyo', cat:'bar', title:'Bar Trench', notes:'Ebisu — botanical-driven cocktails and small plates in a narrow, dim room.'},
-  {city:'Tokyo', cat:'bar', title:'Bar High Five', notes:"Ginza — Hidetsugu Ueno's legendary hard-shake technique, classics done exactly right."},
-  {city:'Tokyo', cat:'bar', title:'Star Bar Ginza', notes:"One of Ginza's most respected old-school cocktail bars."},
-  {city:'Tokyo', cat:'bar', title:'New York Bar', notes:'Park Hyatt Tokyo, 52nd floor — the Lost in Translation bar, skyline views and live jazz.'},
+  {city:'Seoul', cat:'food', price:'spenny', title:'Mingles', notes:'Cheongdam-dong — Three MICHELIN Stars, modern Korean built on jang (fermented sauces) and grain.'},
+  {city:'Seoul', cat:'food', price:'spenny', title:'Jungsik', notes:'Two MICHELIN Stars — contemporary Korean, book the lunch course for real savings.'},
+  {city:'Seoul', cat:'food', price:'spenny', title:'La Yeon', notes:'Inside The Shilla hotel — Two MICHELIN Stars, refined traditional Korean with skyline views.'},
+  {city:'Seoul', cat:'food', price:'spenny', title:'Mosu', notes:'Two MICHELIN Stars, modern cuisine from chef Sung Anh.'},
+  {city:'Seoul', cat:'food', price:'spenny', title:'Kwonsooksoo', notes:'Two MICHELIN Stars — refined Korean, phenomenal service by reputation.'},
+  {city:'Seoul', cat:'food', price:'spenny', title:'Mitou', notes:'Two MICHELIN Stars — Japanese, one of Seoul’s top omakase counters.'},
+  {city:'Seoul', cat:'food', price:'spenny', title:'Onjium', notes:'One MICHELIN Star — royal court cuisine, deeply researched and rare to find done this well.'},
+  {city:'Seoul', cat:'food', price:'cheap', title:'Gwangjang Market', notes:'Iconic street food market — go for bindaetteok (mung bean pancake) and mayak gimbap.'},
+  {city:'Seoul', cat:'food', price:'cheap', title:'Tosokchon Samgyetang', notes:'Historic ginseng chicken soup house, near Gyeongbokgung — a Seoul institution.'},
+  {city:'Seoul', cat:'food', price:'cheap', title:'Myeongdong Kyoja', notes:'Bib Gourmand kalguksu (knife-cut noodle soup) — no-frills, always busy, always worth the queue.'},
+  {city:'Osaka', cat:'food', price:'spenny', title:'Sushiyoshi', notes:'Two MICHELIN Stars — one of the most acclaimed sushi counters in Osaka.'},
+  {city:'Osaka', cat:'food', price:'spenny', title:'Sushi Harasho', notes:'Two MICHELIN Stars, continuously held since debut — Kitashinchi.'},
+  {city:'Osaka', cat:'food', price:'spenny', title:'Kaiseki Honda', notes:'Traditional multi-course kaiseki, MICHELIN-starred.'},
+  {city:'Osaka', cat:'food', price:'spenny', title:'Kashiwaya Osaka Kitashinchi', notes:'Refined kaiseki in Osaka’s established Kitashinchi dining district.'},
+  {city:'Osaka', cat:'food', price:'spenny', title:'Teruya', notes:'Seven-seat kappo counter in Uehonmachi — understated, ingredient-led, MICHELIN-recognised.'},
+  {city:'Osaka', cat:'food', price:'cheap', title:'Mizuno', notes:'Dotonbori okonomiyaki since 1945 — MICHELIN Bib Gourmand, expect a queue.'},
+  {city:'Osaka', cat:'food', price:'cheap', title:'Akaoni', notes:'MICHELIN-recognised takoyaki with creative toppings like salt-butter and wasabi mayo.'},
+  {city:'Osaka', cat:'food', price:'cheap', title:'Kuromon Ichiba Market', notes:'Osaka’s "kitchen" — stall-hop for seafood, wagyu skewers and fresh oysters.'},
+  {city:'Tokyo', cat:'food', price:'spenny', title:'Sukiyabashi Jiro', notes:'The Jiro Dreams of Sushi counter — legendary, needs a reservation well ahead.'},
+  {city:'Tokyo', cat:'food', price:'spenny', title:'Sushi Kanesaka', notes:'Ginza — Two MICHELIN Stars, chef Shinji Kanesaka is Michelin’s Mentor Chef Award winner.'},
+  {city:'Tokyo', cat:'food', price:'spenny', title:'Nishiazabu Sushi Shin', notes:'Two MICHELIN Stars, promoted in the 2026 guide — near-perfect rice and fish balance.'},
+  {city:'Tokyo', cat:'food', price:'spenny', title:'Harutaka', notes:'Ginza — Three MICHELIN Stars sushi, phone reservations only, book about a month out.'},
+  {city:'Tokyo', cat:'food', price:'spenny', title:'Tempura Motoyoshi', notes:'One MICHELIN Star — "molecular tempura" using liquid nitrogen for an ultra-light crunch.'},
+  {city:'Tokyo', cat:'food', price:'decent', title:'Nodaiwa', notes:'Azabu Iikura — historic eel restaurant, MICHELIN-starred, run by a 97-year-old chef.'},
+  {city:'Tokyo', cat:'food', price:'decent', title:'Sushi Dai', notes:'Toyosu Market — legendary sushi breakfast, arrive early for the line.'},
+  {city:'Tokyo', cat:'food', price:'cheap', title:'Ichiran', notes:'Solo ramen booths, tonkotsu broth — the famous chain, open late.'},
+  {city:'Tokyo', cat:'food', price:'decent', title:'Gonpachi Nishi-Azabu', notes:'The restaurant that inspired the Kill Bill fight scene — izakaya classics, lively atmosphere.'},
+  {city:'Seoul', cat:'bar', price:'spenny', title:'Zest', world50:true, world50Rank:16, notes:"No.16, World's 50 Best Bars 2025 (also No.2 Asia's 50 Best, Best Bar in Korea) — progressive, sustainability-minded cocktails."},
+  {city:'Seoul', cat:'bar', price:'spenny', title:'Bar Cham', notes:"Seochon — seasonal, hyper-local ingredients. No.6, Asia's 50 Best Bars 2025."},
+  {city:'Seoul', cat:'bar', price:'spenny', title:'Alice, Cheongdam', notes:"Alice-in-Wonderland speakeasy that jumped 33 spots to No.13 in Asia's 50 Best 2025."},
+  {city:'Seoul', cat:'bar', price:'spenny', title:'Le Chamber', notes:"Cheongdam-dong speakeasy, live piano — order the Chamber Story, served in a hollowed-out book. No.50, Asia's 50 Best."},
+  {city:'Seoul', cat:'bar', price:'spenny', title:'Pine & Co.', notes:'Mad-scientist-lab concept bar — rotovaps, sous vide, upcycled coffee grounds. No.52, extended list.'},
+  {city:'Seoul', cat:'bar', price:'moderate', title:'Soko', notes:'1920s elegance with Korean-Western flair, from bartender-owner Son Soko. No.54, extended list.'},
+  {city:'Seoul', cat:'bar', price:'moderate', title:'Gong Gan', notes:'Cocktail bar set inside a traditional hanok.'},
+  {city:'Seoul', cat:'bar', price:'spenny', title:'Charles H', notes:"Speakeasy inside the Four Seasons Seoul — vintage glamour, try the Velvet Martini. No.96, extended list."},
+  {city:'Osaka', cat:'bar', price:'spenny', title:'Craftroom', notes:"6-seat counter beneath Umeda, ex-Bar K bartender Ryu Fujii. No.58, Asia's 50 Best extended list."},
+  {city:'Osaka', cat:'bar', price:'spenny', title:'Bar Nayuta', notes:"Amemura speakeasy behind a hidden door, no menu — bespoke drinks only. No.100, Asia's 50 Best."},
+  {city:'Osaka', cat:'bar', price:'moderate', title:'Bar K', notes:"Hommachi basement — the bar Osaka's own bartenders drink at on nights off."},
+  {city:'Osaka', cat:'bar', price:'moderate', title:'Bar Augusta Tarlogie', notes:'Kitashinchi whisky bar since 1974, preserved Showa-era basement room.'},
+  {city:'Osaka', cat:'bar', price:'spenny', title:'40 Sky Bar & Lounge', notes:'Conrad Osaka, 40th floor — skyline views with live music.'},
+  {city:'Osaka', cat:'bar', price:'moderate', title:'Bible Club Osaka', notes:'American-retro speakeasy near Dotonbori with rare spirits.'},
+  {city:'Osaka', cat:'bar', price:'spenny', title:'The St. Regis Bar', notes:'Inside the St. Regis Osaka — Azuchi-Momoyama period design, original cocktails.'},
+  {city:'Osaka', cat:'bar', price:'moderate', title:'Osaka Cocktail Library Akashic Records', notes:'Shinsaibashi, European-retro styling.'},
+  {city:'Tokyo', cat:'bar', price:'spenny', title:'Bar Benfiddich', world50:true, world50Rank:18, notes:"Shinjuku apothecary-style bar, house-made bitters and botanicals. No.18, World's 50 Best Bars 2025 (No.9 Asia's 50 Best) — Japan's top-ranked bar."},
+  {city:'Tokyo', cat:'bar', price:'spenny', title:'Virtù', world50:true, world50Rank:45, notes:"39th floor of the Four Seasons Otemachi — sake, shochu and Japanese spirits reinvented. No.45, World's 50 Best Bars 2025 (No.18 Asia's 50 Best)."},
+  {city:'Tokyo', cat:'bar', price:'spenny', title:'Punch Room Tokyo', notes:"The Tokyo Edition, Ginza — shared punch bowls built on Japanese spirits. No.36, Asia's 50 Best."},
+  {city:'Tokyo', cat:'bar', price:'spenny', title:'The Bellwood', world50:true, world50Rank:48, notes:"Shibuya — inventive twists on classics, sushi-cocktail pairings. No.48, World's 50 Best Bars 2025."},
+  {city:'Tokyo', cat:'bar', price:'moderate', title:'Bar Libre', notes:"Ikebukuro, 14 years running, unpretentious cocktails built on Japanese ingredients. No.49, Asia's 50 Best."},
+  {city:'Tokyo', cat:'bar', price:'moderate', title:'SG Club', notes:'Shibuya, two floors — a classic cocktail bar upstairs, a flashier flair bar below.'},
+  {city:'Tokyo', cat:'bar', price:'moderate', title:'Bar Trench', notes:'Ebisu — botanical-driven cocktails and small plates in a narrow, dim room.'},
+  {city:'Tokyo', cat:'bar', price:'spenny', title:'Bar High Five', notes:"Ginza — Hidetsugu Ueno's legendary hard-shake technique, classics done exactly right."},
+  {city:'Tokyo', cat:'bar', price:'spenny', title:'Star Bar Ginza', notes:"One of Ginza's most respected old-school cocktail bars."},
+  {city:'Tokyo', cat:'bar', price:'spenny', title:'New York Bar', notes:'Park Hyatt Tokyo, 52nd floor — the Lost in Translation bar, skyline views and live jazz.'},
   {city:'Seoul', cat:'museum', title:'National Museum of Korea', notes:"Yongsan — Korea's largest museum, ancient artefacts to contemporary."},
   {city:'Seoul', cat:'museum', title:'MMCA Seoul', notes:'National Museum of Modern & Contemporary Art, right next to Gyeongbokgung Palace.'},
   {city:'Seoul', cat:'museum', title:'Leeum Museum of Art', notes:"Samsung's private collection in Hannam-dong — traditional and contemporary wings."},
@@ -951,19 +954,19 @@ const DISCOVER = [
   {city:'Tokyo', cat:'museum', title:'Ghibli Museum', notes:'Mitaka — reservation-only, sells out weeks ahead.'},
 
   // --- Up-and-coming restaurants (added per Jared's request, Sept 2026) ---
-  {city:'Seoul', cat:'food', title:'San', notes:"Gangnam, opened 2024 — chef Jo Seung-hyun (The French Laundry, Geranium, Benu) applies classical French technique to Korean ingredients. Named One To Watch, Asia's 50 Best Restaurants 2026 — the region's hottest new opening."},
-  {city:'Seoul', cat:'food', title:'Eatanic Garden', notes:"Josun Palace — chef Son Jong-won's modern French-Korean tasting menu. No.26, Asia's 50 Best Restaurants 2026, singled out for representing Seoul's newer generation of chefs."},
-  {city:'Seoul', cat:'food', title:'Bium', notes:"Cheongdam-dong — inventive contemporary Korean cuisine. No.43, Asia's 50 Best Restaurants 2026."},
-  {city:'Tokyo', cat:'food', title:'Sushi Sho Isseki Sancho', notes:'Shinsen, new 2026 — Edomae omakase built on traditional dashi umami, with a tableside matcha ceremony.'},
-  {city:'Tokyo', cat:'food', title:'Bistro Un Trois', notes:'Shinsen, new 2026 — 17-seat French bistro reworking classics with Japanese ingredients; "affordable luxury" is the pitch.'},
-  {city:'Tokyo', cat:'food', title:'Oxomoco', notes:'Roppongi, new 2026 — modern Mexican, wood-fired dishes and artisanal tacos with a serious agave cocktail list.'},
-  {city:'Tokyo', cat:'food', title:'Kaifan Tokyo', notes:'Hiroo, new 2026 — modern Chinese: fresh dumplings, Sichuan-spiced bowls, tapas-style small plates on hand-painted vintage porcelain.'},
-  {city:'Tokyo', cat:'food', title:'Ansolence', notes:"Meguro, new 2026 — chef Hongson Rin's French-technique venture built around fermentation and fresh fruit."},
-  {city:'Tokyo', cat:'food', title:'Sushi Hisashi', notes:'Omotesando, new 2026 — modern sushi counter supervised by a Michelin-starred chef, distinctive house-made rice.'},
-  {city:'Osaka', cat:'food', title:'Pizza Timewarp ∈Lacerba', notes:"Chef Masaaki Fujita's Neapolitan pizza, plus inventive riffs like black pork with Okinawan brown sugar and cacao. A Time Out Market Osaka standout."},
-  {city:'Osaka', cat:'food', title:'Gihan Siumei', notes:'Chef Yoshiyuki Wei — Hong Kong-style roast meats (crispy pork, roast duck, char siu) and dim sum, Time Out Market Osaka.'},
-  {city:'Osaka', cat:'food', title:'Kitaro Sushi', notes:'Sharikoma-style sushi (small vinegared rice balls) topped with market-fresh fish, Time Out Market Osaka.'},
-  {city:'Osaka', cat:'food', title:'Watanabe Curry', notes:"Chef Osamu Watanabe's curry — Japanese sea bream and chicken stock meets Sri Lankan spice, Time Out Market Osaka."}
+  {city:'Seoul', cat:'food', price:'spenny', title:'San', notes:"Gangnam, opened 2024 — chef Jo Seung-hyun (The French Laundry, Geranium, Benu) applies classical French technique to Korean ingredients. Named One To Watch, Asia's 50 Best Restaurants 2026 — the region's hottest new opening."},
+  {city:'Seoul', cat:'food', price:'spenny', title:'Eatanic Garden', notes:"Josun Palace — chef Son Jong-won's modern French-Korean tasting menu. No.26, Asia's 50 Best Restaurants 2026, singled out for representing Seoul's newer generation of chefs."},
+  {city:'Seoul', cat:'food', price:'spenny', title:'Bium', notes:"Cheongdam-dong — inventive contemporary Korean cuisine. No.43, Asia's 50 Best Restaurants 2026."},
+  {city:'Tokyo', cat:'food', price:'spenny', title:'Sushi Sho Isseki Sancho', notes:'Shinsen, new 2026 — Edomae omakase built on traditional dashi umami, with a tableside matcha ceremony.'},
+  {city:'Tokyo', cat:'food', price:'decent', title:'Bistro Un Trois', notes:'Shinsen, new 2026 — 17-seat French bistro reworking classics with Japanese ingredients; "affordable luxury" is the pitch.'},
+  {city:'Tokyo', cat:'food', price:'decent', title:'Oxomoco', notes:'Roppongi, new 2026 — modern Mexican, wood-fired dishes and artisanal tacos with a serious agave cocktail list.'},
+  {city:'Tokyo', cat:'food', price:'decent', title:'Kaifan Tokyo', notes:'Hiroo, new 2026 — modern Chinese: fresh dumplings, Sichuan-spiced bowls, tapas-style small plates on hand-painted vintage porcelain.'},
+  {city:'Tokyo', cat:'food', price:'spenny', title:'Ansolence', notes:"Meguro, new 2026 — chef Hongson Rin's French-technique venture built around fermentation and fresh fruit."},
+  {city:'Tokyo', cat:'food', price:'spenny', title:'Sushi Hisashi', notes:'Omotesando, new 2026 — modern sushi counter supervised by a Michelin-starred chef, distinctive house-made rice.'},
+  {city:'Osaka', cat:'food', price:'decent', title:'Pizza Timewarp ∈Lacerba', notes:"Chef Masaaki Fujita's Neapolitan pizza, plus inventive riffs like black pork with Okinawan brown sugar and cacao. A Time Out Market Osaka standout."},
+  {city:'Osaka', cat:'food', price:'decent', title:'Gihan Siumei', notes:'Chef Yoshiyuki Wei — Hong Kong-style roast meats (crispy pork, roast duck, char siu) and dim sum, Time Out Market Osaka.'},
+  {city:'Osaka', cat:'food', price:'decent', title:'Kitaro Sushi', notes:'Sharikoma-style sushi (small vinegared rice balls) topped with market-fresh fish, Time Out Market Osaka.'},
+  {city:'Osaka', cat:'food', price:'cheap', title:'Watanabe Curry', notes:"Chef Osamu Watanabe's curry — Japanese sea bream and chicken stock meets Sri Lankan spice, Time Out Market Osaka."}
 ];
 const DISCOVER_CATS = [
   {k:'food', label:'Restaurants'},
@@ -1175,8 +1178,10 @@ function cardHTML(item){
   if(item.city) metaBits.push(item.city);
   if(item.endDate) metaBits.push('until ' + fmtDay(item.endDate).full);
   const meta = metaBits.join(' · ');
-  const tagsHtml = (item.type !== 'flight' && item.status)
-    ? `<div class="tags"><span class="tag ${item.status}">${item.status === 'booked' ? 'Booked' : 'Idea'}</span></div>` : '';
+  const priceTag = priceHTML(item.type, item.price);
+  const statusTag = (item.type !== 'flight' && item.status)
+    ? `<span class="tag ${item.status}">${item.status === 'booked' ? 'Booked' : 'Idea'}</span>` : '';
+  const tagsHtml = (statusTag || priceTag) ? `<div class="tags">${statusTag}${priceTag}</div>` : '';
   return `<div class="card type-${item.type}" data-id="${item.id}">
     <div class="icon">${ICONS[item.type]}</div>
     <div class="body">
@@ -1200,6 +1205,23 @@ function badge50HTML(rank){
   if(!rank) return '';
   return `<span class="badge-50" title="World's 50 Best Bars 2025 — No. ${rank}">50</span>`;
 }
+const PRICE_META = {
+  food: {
+    cheap:  {sym:'$',   title:'Cheap eats — under $50 USD for two'},
+    decent: {sym:'$$',  title:'Decent — $50–150 USD for two'},
+    spenny: {sym:'$$$', title:'Spenny — over $150 USD for two'}
+  },
+  bar: {
+    inexpensive: {sym:'$',   title:'Inexpensive — under $10 USD a cocktail'},
+    moderate:    {sym:'$$',  title:'Moderate — $10–20 USD a cocktail'},
+    spenny:      {sym:'$$$', title:'Spenny — over $20 USD a cocktail'}
+  }
+};
+function priceHTML(cat, tier){
+  const meta = PRICE_META[cat] && PRICE_META[cat][tier];
+  if(!meta) return '';
+  return `<span class="tag price-${tier}" title="${meta.title}">${meta.sym}</span>`;
+}
 function discoverHTML(){
   const citiesForCat = [...new Set(DISCOVER.filter(d => d.cat === discoverCat).map(d => d.city))];
   if(!citiesForCat.includes(discoverCity)) discoverCity = citiesForCat[0];
@@ -1221,11 +1243,13 @@ function discoverHTML(){
   list.forEach((d, idx) => {
     const already = items.some(i => i.title.toLowerCase() === d.title.toLowerCase());
     const dateBit = d.date ? fmtDay(d.date).full + (d.endDate ? '–' + fmtDay(d.endDate).full : '') : null;
+    const priceTag = priceHTML(d.cat, d.price);
     html += `<div class="sg-card" style="animation-delay:${idx*0.03}s">
       <div class="body">
         <div class="title">${titleLinkHTML(d.title, d.city)}${badge50HTML(d.world50Rank)}</div>
         ${dateBit ? `<div class="meta">${escapeHtml(dateBit)}</div>` : ''}
         <div class="meta">${escapeHtml(d.notes)}</div>
+        ${priceTag ? `<div class="tags">${priceTag}</div>` : ''}
       </div>
       <button class="sg-add ${already?'added':''}" data-idx="${idx}" ${already?'disabled':''}>${already?'✓':'+'}</button>
     </div>`;
@@ -1250,7 +1274,8 @@ function addDiscoverItem(d){
   items.push({
     id: uid(), type, title: d.title, date: d.date || '', endDate: d.endDate || '',
     time:'', city: d.city, notes: d.notes, status:'idea',
-    world50: d.world50 || false, world50Rank: d.world50Rank || null
+    world50: d.world50 || false, world50Rank: d.world50Rank || null,
+    price: d.price || null
   });
   persist();
   render();
