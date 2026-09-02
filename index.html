@@ -462,6 +462,25 @@
     transform:translateY(-1px);
   }
   .sg-card .meta{font-size:12.5px;color:var(--ink-soft);margin-top:3px;line-height:1.45;}
+  .badge-50{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:var(--ink);
+    background-image:linear-gradient(135deg, #2b3358, var(--ink));
+    color:var(--amber);
+    font-size:8.5px;
+    font-weight:800;
+    letter-spacing:-0.02em;
+    margin-left:6px;
+    vertical-align:middle;
+    transform:translateY(-1px);
+    box-shadow:0 0 0 2px var(--card);
+    cursor:default;
+  }
   .sg-add{
     flex:0 0 auto;
     width:34px;height:34px;
@@ -875,7 +894,7 @@ const DISCOVER = [
   {city:'Tokyo', cat:'food', title:'Sushi Dai', notes:'Toyosu Market — legendary sushi breakfast, arrive early for the line.'},
   {city:'Tokyo', cat:'food', title:'Ichiran', notes:'Solo ramen booths, tonkotsu broth — the famous chain, open late.'},
   {city:'Tokyo', cat:'food', title:'Gonpachi Nishi-Azabu', notes:'The restaurant that inspired the Kill Bill fight scene — izakaya classics, lively atmosphere.'},
-  {city:'Seoul', cat:'bar', title:'Zest', notes:"No.2 in Asia's 50 Best Bars 2025, Best Bar in Korea — progressive, sustainability-minded cocktails."},
+  {city:'Seoul', cat:'bar', title:'Zest', world50:true, world50Rank:16, notes:"No.16, World's 50 Best Bars 2025 (also No.2 Asia's 50 Best, Best Bar in Korea) — progressive, sustainability-minded cocktails."},
   {city:'Seoul', cat:'bar', title:'Bar Cham', notes:"Seochon — seasonal, hyper-local ingredients. No.6, Asia's 50 Best Bars 2025."},
   {city:'Seoul', cat:'bar', title:'Alice, Cheongdam', notes:"Alice-in-Wonderland speakeasy that jumped 33 spots to No.13 in Asia's 50 Best 2025."},
   {city:'Seoul', cat:'bar', title:'Le Chamber', notes:"Cheongdam-dong speakeasy, live piano — order the Chamber Story, served in a hollowed-out book. No.50, Asia's 50 Best."},
@@ -891,10 +910,10 @@ const DISCOVER = [
   {city:'Osaka', cat:'bar', title:'Bible Club Osaka', notes:'American-retro speakeasy near Dotonbori with rare spirits.'},
   {city:'Osaka', cat:'bar', title:'The St. Regis Bar', notes:'Inside the St. Regis Osaka — Azuchi-Momoyama period design, original cocktails.'},
   {city:'Osaka', cat:'bar', title:'Osaka Cocktail Library Akashic Records', notes:'Shinsaibashi, European-retro styling.'},
-  {city:'Tokyo', cat:'bar', title:'Bar Benfiddich', notes:"Shinjuku apothecary-style bar, house-made bitters and botanicals. No.9, Asia's 50 Best 2025 — Japan's top-ranked bar."},
-  {city:'Tokyo', cat:'bar', title:'Virtù', notes:"39th floor of the Four Seasons Otemachi — sake, shochu and Japanese spirits reinvented. No.18, Asia's 50 Best."},
+  {city:'Tokyo', cat:'bar', title:'Bar Benfiddich', world50:true, world50Rank:18, notes:"Shinjuku apothecary-style bar, house-made bitters and botanicals. No.18, World's 50 Best Bars 2025 (No.9 Asia's 50 Best) — Japan's top-ranked bar."},
+  {city:'Tokyo', cat:'bar', title:'Virtù', world50:true, world50Rank:45, notes:"39th floor of the Four Seasons Otemachi — sake, shochu and Japanese spirits reinvented. No.45, World's 50 Best Bars 2025 (No.18 Asia's 50 Best)."},
   {city:'Tokyo', cat:'bar', title:'Punch Room Tokyo', notes:"The Tokyo Edition, Ginza — shared punch bowls built on Japanese spirits. No.36, Asia's 50 Best."},
-  {city:'Tokyo', cat:'bar', title:'The Bellwood', notes:"Shibuya — inventive twists on classics, sushi-cocktail pairings. No.48, World's 50 Best 2025."},
+  {city:'Tokyo', cat:'bar', title:'The Bellwood', world50:true, world50Rank:48, notes:"Shibuya — inventive twists on classics, sushi-cocktail pairings. No.48, World's 50 Best Bars 2025."},
   {city:'Tokyo', cat:'bar', title:'Bar Libre', notes:"Ikebukuro, 14 years running, unpretentious cocktails built on Japanese ingredients. No.49, Asia's 50 Best."},
   {city:'Tokyo', cat:'bar', title:'SG Club', notes:'Shibuya, two floors — a classic cocktail bar upstairs, a flashier flair bar below.'},
   {city:'Tokyo', cat:'bar', title:'Bar Trench', notes:'Ebisu — botanical-driven cocktails and small plates in a narrow, dim room.'},
@@ -929,7 +948,22 @@ const DISCOVER = [
   {city:'Tokyo', cat:'museum', title:'Tokyo National Museum', notes:"Ueno — Japan's oldest and largest museum; hosts the Edo in Focus British Museum show through 18 Oct."},
   {city:'Tokyo', cat:'museum', title:'Nezu Museum', notes:'Omotesando — traditional Japanese and Asian art with a stunning garden.'},
   {city:'Tokyo', cat:'museum', title:'Sumida Hokusai Museum', notes:'Ryogoku — dedicated to Hokusai, striking angular building.'},
-  {city:'Tokyo', cat:'museum', title:'Ghibli Museum', notes:'Mitaka — reservation-only, sells out weeks ahead.'}
+  {city:'Tokyo', cat:'museum', title:'Ghibli Museum', notes:'Mitaka — reservation-only, sells out weeks ahead.'},
+
+  // --- Up-and-coming restaurants (added per Jared's request, Sept 2026) ---
+  {city:'Seoul', cat:'food', title:'San', notes:"Gangnam, opened 2024 — chef Jo Seung-hyun (The French Laundry, Geranium, Benu) applies classical French technique to Korean ingredients. Named One To Watch, Asia's 50 Best Restaurants 2026 — the region's hottest new opening."},
+  {city:'Seoul', cat:'food', title:'Eatanic Garden', notes:"Josun Palace — chef Son Jong-won's modern French-Korean tasting menu. No.26, Asia's 50 Best Restaurants 2026, singled out for representing Seoul's newer generation of chefs."},
+  {city:'Seoul', cat:'food', title:'Bium', notes:"Cheongdam-dong — inventive contemporary Korean cuisine. No.43, Asia's 50 Best Restaurants 2026."},
+  {city:'Tokyo', cat:'food', title:'Sushi Sho Isseki Sancho', notes:'Shinsen, new 2026 — Edomae omakase built on traditional dashi umami, with a tableside matcha ceremony.'},
+  {city:'Tokyo', cat:'food', title:'Bistro Un Trois', notes:'Shinsen, new 2026 — 17-seat French bistro reworking classics with Japanese ingredients; "affordable luxury" is the pitch.'},
+  {city:'Tokyo', cat:'food', title:'Oxomoco', notes:'Roppongi, new 2026 — modern Mexican, wood-fired dishes and artisanal tacos with a serious agave cocktail list.'},
+  {city:'Tokyo', cat:'food', title:'Kaifan Tokyo', notes:'Hiroo, new 2026 — modern Chinese: fresh dumplings, Sichuan-spiced bowls, tapas-style small plates on hand-painted vintage porcelain.'},
+  {city:'Tokyo', cat:'food', title:'Ansolence', notes:"Meguro, new 2026 — chef Hongson Rin's French-technique venture built around fermentation and fresh fruit."},
+  {city:'Tokyo', cat:'food', title:'Sushi Hisashi', notes:'Omotesando, new 2026 — modern sushi counter supervised by a Michelin-starred chef, distinctive house-made rice.'},
+  {city:'Osaka', cat:'food', title:'Pizza Timewarp ∈Lacerba', notes:"Chef Masaaki Fujita's Neapolitan pizza, plus inventive riffs like black pork with Okinawan brown sugar and cacao. A Time Out Market Osaka standout."},
+  {city:'Osaka', cat:'food', title:'Gihan Siumei', notes:'Chef Yoshiyuki Wei — Hong Kong-style roast meats (crispy pork, roast duck, char siu) and dim sum, Time Out Market Osaka.'},
+  {city:'Osaka', cat:'food', title:'Kitaro Sushi', notes:'Sharikoma-style sushi (small vinegared rice balls) topped with market-fresh fish, Time Out Market Osaka.'},
+  {city:'Osaka', cat:'food', title:'Watanabe Curry', notes:"Chef Osamu Watanabe's curry — Japanese sea bream and chicken stock meets Sri Lankan spice, Time Out Market Osaka."}
 ];
 const DISCOVER_CATS = [
   {k:'food', label:'Restaurants'},
@@ -1146,7 +1180,7 @@ function cardHTML(item){
   return `<div class="card type-${item.type}" data-id="${item.id}">
     <div class="icon">${ICONS[item.type]}</div>
     <div class="body">
-      <div class="top-row"><span class="title">${titleLinkHTML(item.title, item.city)}</span><span class="time">${timeStr}</span></div>
+      <div class="top-row"><span class="title">${titleLinkHTML(item.title, item.city)}${badge50HTML(item.world50Rank)}</span><span class="time">${timeStr}</span></div>
       ${meta ? `<div class="meta">${escapeHtml(meta)}</div>` : ''}
       ${tagsHtml}
     </div>
@@ -1161,6 +1195,10 @@ function searchLink(title, city){
 }
 function titleLinkHTML(title, city){
   return `<a class="title-link" href="${searchLink(title, city)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${escapeHtml(title)}</a>`;
+}
+function badge50HTML(rank){
+  if(!rank) return '';
+  return `<span class="badge-50" title="World's 50 Best Bars 2025 — No. ${rank}">50</span>`;
 }
 function discoverHTML(){
   const citiesForCat = [...new Set(DISCOVER.filter(d => d.cat === discoverCat).map(d => d.city))];
@@ -1185,7 +1223,7 @@ function discoverHTML(){
     const dateBit = d.date ? fmtDay(d.date).full + (d.endDate ? '–' + fmtDay(d.endDate).full : '') : null;
     html += `<div class="sg-card" style="animation-delay:${idx*0.03}s">
       <div class="body">
-        <div class="title">${titleLinkHTML(d.title, d.city)}</div>
+        <div class="title">${titleLinkHTML(d.title, d.city)}${badge50HTML(d.world50Rank)}</div>
         ${dateBit ? `<div class="meta">${escapeHtml(dateBit)}</div>` : ''}
         <div class="meta">${escapeHtml(d.notes)}</div>
       </div>
@@ -1211,7 +1249,8 @@ function addDiscoverItem(d){
   const type = (d.cat === 'bar') ? 'bar' : (d.cat === 'food') ? 'food' : 'activity';
   items.push({
     id: uid(), type, title: d.title, date: d.date || '', endDate: d.endDate || '',
-    time:'', city: d.city, notes: d.notes, status:'idea'
+    time:'', city: d.city, notes: d.notes, status:'idea',
+    world50: d.world50 || false, world50Rank: d.world50Rank || null
   });
   persist();
   render();
