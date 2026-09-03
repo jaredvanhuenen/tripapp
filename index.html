@@ -966,11 +966,29 @@ const DISCOVER = [
   {city:'Osaka', cat:'food', price:'decent', title:'Pizza Timewarp ∈Lacerba', notes:"Chef Masaaki Fujita's Neapolitan pizza, plus inventive riffs like black pork with Okinawan brown sugar and cacao. A Time Out Market Osaka standout."},
   {city:'Osaka', cat:'food', price:'decent', title:'Gihan Siumei', notes:'Chef Yoshiyuki Wei — Hong Kong-style roast meats (crispy pork, roast duck, char siu) and dim sum, Time Out Market Osaka.'},
   {city:'Osaka', cat:'food', price:'decent', title:'Kitaro Sushi', notes:'Sharikoma-style sushi (small vinegared rice balls) topped with market-fresh fish, Time Out Market Osaka.'},
-  {city:'Osaka', cat:'food', price:'cheap', title:'Watanabe Curry', notes:"Chef Osamu Watanabe's curry — Japanese sea bream and chicken stock meets Sri Lankan spice, Time Out Market Osaka."}
+  {city:'Osaka', cat:'food', price:'cheap', title:'Watanabe Curry', notes:"Chef Osamu Watanabe's curry — Japanese sea bream and chicken stock meets Sri Lankan spice, Time Out Market Osaka."},
+
+  // --- Neighborhoods to stay ---
+  {city:'Seoul', cat:'neighborhood', title:'Myeongdong', notes:"Central and dead simple to get around from — shopping, street food stalls and a subway/airport-bus hub on your doorstep. Touristy and can feel a bit generic at night, but you'll never waste time getting anywhere. Roughly $100–160/night for a solid mid-range hotel."},
+  {city:'Seoul', cat:'neighborhood', title:'Hongdae', notes:"Young, loud and fun — indie cafes, live music, street performers and nightlife that runs till sunrise near the university. Best if you want energy outside your door rather than quiet. Budget to mid-range, roughly $70–130/night."},
+  {city:'Seoul', cat:'neighborhood', title:'Gangnam', notes:'Polished, modern Seoul — wide boulevards, glass towers, the best shopping and the fine-dining/cocktail-bar scene from your list (Jungsik, Zest, Le Chamber are all close by). Feels more corporate/upscale than atmospheric. $180–350+/night.'},
+  {city:'Seoul', cat:'neighborhood', title:'Insadong & Jongno', notes:'The traditional, calmer side of Seoul — tea houses, hanok alleys, craft shops and easy walks to Gyeongbokgung and Bukchon. Great home base if you want charm over convenience. Roughly $90–170/night.'},
+
+  {city:'Osaka', cat:'neighborhood', title:'Namba', notes:"Osaka's neon heart — Dotonbori canal, Kuromon market, endless izakayas and the best nightlife, all walkable. Loud and touristy right at the center, quieter a few blocks off the main strip. Wide range: $60–120 budget, $150–300+ for nicer hotels."},
+  {city:'Osaka', cat:'neighborhood', title:'Umeda', notes:"Osaka's other hub, around the main train station — sleek, business-district energy, huge department stores, and the best base if you're train-hopping a lot (direct links to the airport and to Kyoto). Mid-range to upscale, roughly $130–280/night."},
+  {city:'Osaka', cat:'neighborhood', title:'Nakanoshima & Hommachi', notes:'Calm, riverside and central — museums, parks, cafes, and a short walk or subway ride to Namba/Umeda without the noise of either. Good pick if you want quiet nights. Roughly $110–220/night.'},
+  {city:'Osaka', cat:'neighborhood', title:'Tennoji & Shinsekai', notes:"Old-town, retro Osaka — cheap kushikatsu joints, a rougher charm, and Shitennoji temple nearby. Best value in the city if atmosphere matters more than polish. Budget-friendly, roughly $50–100/night."},
+
+  {city:'Tokyo', cat:'neighborhood', title:'Shinjuku', notes:'The classic first-timer base — neon, nightlife, the busiest train station on earth, and everything (Golden Gai, Kabukicho, Shinjuku Gyoen) walkable or one stop away. Can feel overwhelming after dark. Mid to high, roughly $150–300/night.'},
+  {city:'Tokyo', cat:'neighborhood', title:'Shibuya', notes:'Younger and trendier — the scramble crossing, fashion, and a short hop to Bar Benfiddich, SG Club and The Bellwood on your bar list. Busy and bright, less about quiet evenings. Mid to high, roughly $150–300/night.'},
+  {city:'Tokyo', cat:'neighborhood', title:'Ginza & Tokyo Station', notes:'The polished, upscale option — flagship shopping, the best sushi counters, and Tokyo Station itself for easy Shinkansen access. Quieter at night than Shinjuku/Shibuya, and pricier for it. $200–400+/night.'},
+  {city:'Tokyo', cat:'neighborhood', title:'Asakusa', notes:"Old Tokyo — Senso-ji temple, traditional streets, ryokan-style stays, and noticeably better value than the center. Trades some nightlife/convenience for atmosphere and budget. Roughly $80–150/night."},
+  {city:'Tokyo', cat:'neighborhood', title:'Roppongi', notes:"Cosmopolitan and a bit more low-key residential — art museums (Mori, National Art Center), international restaurants, and an easier-going nightlife scene than Shibuya's. Mid to high, roughly $160–320/night."}
 ];
 const DISCOVER_CATS = [
   {k:'food', label:'Restaurants'},
   {k:'bar', label:'Bars'},
+  {k:'neighborhood', label:'Stays'},
   {k:'museum', label:'Museums & galleries'},
   {k:'festival', label:'Festivals & events'}
 ];
@@ -1270,7 +1288,7 @@ function wireDiscover(){
   });
 }
 function addDiscoverItem(d){
-  const type = (d.cat === 'bar') ? 'bar' : (d.cat === 'food') ? 'food' : 'activity';
+  const type = (d.cat === 'bar') ? 'bar' : (d.cat === 'food') ? 'food' : (d.cat === 'neighborhood') ? 'stay' : 'activity';
   items.push({
     id: uid(), type, title: d.title, date: d.date || '', endDate: d.endDate || '',
     time:'', city: d.city, notes: d.notes, status:'idea',
